@@ -186,6 +186,66 @@ Route::group(['middleware' => ['checkAuth']], function ()
 				'uses'=>'Admin\NewsController@delete'
                 ));
 
+            /* Event Form */
+            Route::get('/forms',array(
+				'as'=>'admin.forms.index',
+				'uses'=>'Admin\FormController@index'
+				));
+			Route::get('/forms/{id}',array(
+				'as'=>'admin.forms.edit',
+				'uses'=>'Admin\FormController@edit'
+				));
+			Route::post('/forms/{id}/update',array(
+				'as'=>'admin.forms.update',
+				'uses'=>'Admin\FormController@update'
+				));
+			Route::post('/forms/save',array(
+				'as'=>'admin.forms.save',
+				'uses'=>'Admin\FormController@save'
+				));
+			Route::post('/forms/delete',array(
+				'as'=>'admin.forms.delete',
+				'uses'=>'Admin\FormController@delete'
+                ));
+
+            /* Form Elements */
+			Route::get('/forms/{form_id}/elements/{id}',array(
+				'as'=>'admin.forms.elements.edit',
+				'uses'=>'Admin\FormElementController@edit'
+				));
+			Route::post('/forms/{form_id}/elements/{id}/update',array(
+				'as'=>'admin.forms.elements.update',
+				'uses'=>'Admin\FormElementController@update'
+				));
+			Route::post('/forms/{form_id}/elements/save',array(
+				'as'=>'admin.forms.elements.save',
+				'uses'=>'Admin\FormElementController@save'
+				));
+			Route::post('/forms/elements/delete',array(
+				'as'=>'admin.forms.elements.delete',
+				'uses'=>'Admin\FormElementController@delete'
+                ));
+
+            /* Element Options */
+			Route::get('/forms/{form_id}/elements/{element_id}/options/{id}',array(
+				'as'=>'admin.forms.elements.options.edit',
+				'uses'=>'Admin\FormElementOptionController@edit'
+				));
+			Route::post('/forms/{form_id}/elements/{element_id}/options/{id}/update',array(
+				'as'=>'admin.forms.elements.options.update',
+				'uses'=>'Admin\FormElementOptionController@update'
+				));
+			Route::post('/forms/{form_id}/elements/{element_id}/options/save',array(
+				'as'=>'admin.forms.elements.options.save',
+				'uses'=>'Admin\FormElementOptionController@save'
+				));
+			Route::post('/forms/elements/options/delete',array(
+				'as'=>'admin.forms.elements.options.delete',
+				'uses'=>'Admin\FormElementOptionController@delete'
+                ));
+
+
+
 		});
 	});
 });

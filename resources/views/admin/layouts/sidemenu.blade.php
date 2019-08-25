@@ -39,6 +39,8 @@
 
       <li><a href="{{route('admin.events.index')}}"><i class="fa fa-link"></i> <span>Events</span></a></li>
 
+      <li><a href="{{route('admin.forms.index')}}"><i class="fa fa-link"></i> <span>Event Forms</span></a></li>
+
       <li><a href="{{route('admin.testimonials.index')}}"><i class="fa fa-link"></i> <span>Testimonials</span></a></li>
 
       <li><a href="{{route('admin.news.index')}}"><i class="fa fa-link"></i> <span>News</span></a></li>
