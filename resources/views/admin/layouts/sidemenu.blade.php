@@ -45,7 +45,7 @@
 
       <li><a href="{{route('admin.news.index')}}"><i class="fa fa-link"></i> <span>News</span></a></li>
 
-      <li><a href="{{route('admin.vision.index')}}"><i class="fa fa-link"></i> <span>Vision</span></a></li>
+      <li><a href="{{route('admin.text.index')}}"><i class="fa fa-link"></i> <span>Website Text</span></a></li>
 
       <li><a href="{{route('admin.settings.index')}}"><i class="fa fa-link"></i> <span>Settings</span></a></li>
     </ul>

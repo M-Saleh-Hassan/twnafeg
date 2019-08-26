@@ -57,14 +57,14 @@ Route::group(['middleware' => ['checkAuth']], function ()
                 'uses'=>'Admin\MediaController@deleteFile'
                 ));
 
-            /* Vision */
-            Route::get('/vision',array(
-                'as'=>'admin.vision.index',
-                'uses'=>'Admin\VisionController@index'
+            /* website text */
+            Route::get('/text',array(
+                'as'=>'admin.text.index',
+                'uses'=>'Admin\WebsiteTextController@index'
                 ));
-            Route::post('/vision/update',array(
-                'as'=>'admin.vision.update',
-                'uses'=>'Admin\VisionController@update'
+            Route::post('/text/update',array(
+                'as'=>'admin.text.update',
+                'uses'=>'Admin\WebsiteTextController@update'
                 ));
 
             /* Settings */

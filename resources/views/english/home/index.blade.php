@@ -3,7 +3,7 @@
 @section('content')
 
     @include('english.home.slider')
-    
+
     <section id="about">
         <div class="container text-center section">
             <div class="row">
@@ -15,19 +15,14 @@
                 </div>
                 <div class="col-lg-8 col-md-6 col-sm-12" >
                         <p class="text-start " data-aos="flip-right" data-aos-duration="2000">
-
-                            It all started in the year 2002 at the Nyarugusu refugee camp in Tanzania. As horrific stories of rape, dismemberment and slaughter shook Cassie (later to establish the movement) to his core, one thing became inescapably clear - there had to be a deeper catalyst for this brokenness than what initially met the eye.
-
-                            15 years of interaction with leaders around the world, hundreds of hours of research and thousands of meetings later, we are even more convinced that fatherlessness wasn’t just an issue facing those refugees.
-
-
+                            {!!strip_tags($website_text->how_it_started)!!}
                         </p>
                 </div>
 
             </div>
 
             <div class="col-12 quote "data-aos="zoom-in" data-aos-duration="1000">
-                    <p>"Virtually every major social pathology has been linked to fatherlessness."</p>
+                    <p>"{!!strip_tags($website_text->quote1)!!}"</p>
             </div>
         </div>
         <div class="row egypt-bg">
@@ -35,9 +30,7 @@
                 <div class=" col-12 eg-text " data-aos="zoom-in" data-aos-duration="1000">
                     <h3 data-aos="zoom-in-up" data-aos-delay="500" data-aos-duration="1000">.. And then in Egypt:</h3>
                     <p class="text-center egypt" data-aos-delay="500" data-aos="zoom-in-down" data-aos-duration="1000">
-                            Bassem Abdel Malek and a group of other men attended a session given by Cassie on Fatherhood when he visited Egypt. They were truly inspired and since then the movement started in Egypt training more than 4000 men in Cairo alone.
-                            In Bassem’s own words “ I started working with the world needs a father movement in 2012 when Cassie came to Egypt to give the full fatherhood training. I started after in my house by inviting other fathers and husbands and trained them back in 2013”.
-
+                            {!!strip_tags($website_text->then_in_egypt)!!}
                     </p>
                 </div>
 
@@ -46,7 +39,7 @@
 
         <div class="container">
                 <div class="col-12 text-center quote " data-aos="zoom-in" data-aos-duration="1000">
-                        <p><q>Fatherhood is a profession not a title</q></p>
+                    <p><q>{!!strip_tags($website_text->quote2)!!}</q></p>
                 </div>
         </div>
         <div class="wrapper-c" >
@@ -61,9 +54,7 @@
                     <div class="col-12">
                         <h3 data-aos="fade-up-left" data-aos-delay="600" data-aos-duration="1000">TWNAF Father & Child camps:</h3>
                         <p class="text-center " data-aos="fade-down-right" data-aos-delay="600" data-aos-duration="1000">
-                                “following the success of the movement in Egypt, we came up with the idea of inviting the fathers and their children to spend 2 nights in a father & child camp. During these camps, the fathers and their kids can enjoy playing and spending quality time together and also listen to the fatherhood sessions. We focus in these camps on all the fathers’ roles according to the TWNAF training to educate them on the positive effect of fatherhood on children. Another very important aspect of these camps is giving the possibility to fathers to apply what they learned right away on their sons and daughters.
-                                So far we trained around 4500 men throughout these camps.”
-
+                            {!!strip_tags($website_text->camps_description)!!}
                         </p>
                     </div>
                 </div>
@@ -76,8 +67,7 @@
                 <div class="col-12">
                     <h3 data-aos="zoom-in-down" data-aos-delay="500" data-aos-duration="5000">Internationally today:</h3>
                     <p class="text-center ww" data-aos="zoom-in-up" data-aos-delay="500" data-aos-duration="1000">
-                        The World Needs A Father movement became an international movement in more than 80 countries around the world restoring and bringing the health back to thousands of families.
-
+                        {!!strip_tags($website_text->internationally_today)!!}
                     </p>
 
 
@@ -90,9 +80,7 @@
         <div class="container ">
             <div class="row v-text">
                 <h3 data-aos="fade-up-left"  data-aos-duration="1000">Our Vision</h3>
-                <p class="text-center" data-aos="fade-down-right"  data-aos-duration="1000">TWNAF (The World Needs A Father) believes that every community faces fatherlessness. TWNAF is about training communities of men to understand the value of their roles as fathers, and giving them the tools to train other men around them, so that as heaven splashes down in their homes, the ripples flow through their community.
-                        Our Vision is that every CHILD grows up through a mature, selfless, available, accountable and devoted FATHER
-                </p>
+                <p class="text-center" data-aos="fade-down-right"  data-aos-duration="1000">{!!strip_tags($website_text->vision)!!}</p>
             </div>
         </div>
     </section>
@@ -248,7 +236,7 @@
 
     <div class="container">
             <div class="col-12 text-center quote " data-aos="zoom-in" data-aos-duration="1000">
-                    <p><q>If you don't have time, don't get children</q></p>
+                    <p><q>{!!strip_tags($website_text->quote3)!!}</q></p>
             </div>
     </div>
 
@@ -366,15 +354,14 @@
         <div class="container">
             <h3 data-aos="flip-down" data-aos-duration="1000">Mother Design</h3>
             <p class="text-center"data-aos="flip-right" data-aos-duration="1000">
-                    The Mother Design was developed in response to an outpouring of desire from the wives of men who had been to a TWNAF training. The training content speaks to men in depth, but what about the wives? And what about the single mothers? We realised that reaching the fathers was only part of the puzzle; we needed to empower the mothers too.
-
-                    Part of our goal is to help mothers support their husbands, because the TWNAF vision is counter-cultural and cannot be accomplished alone. But even closer to our hearts is helping mothers and wives understand the unique keys they hold to building a strong marriage and a firm, loving foundation for the family.  </p>
+                {!!strip_tags($website_text->mother_design)!!}
+            </p>
         </div>
     </section>
 
     <div class="container">
             <div class="col-12 text-center quote " data-aos="zoom-in" data-aos-duration="1000">
-                    <p><q>Children listen to what they see not what they hear</q></p>
+                    <p><q>{!!strip_tags($website_text->quote4)!!}</q></p>
             </div>
     </div>
 
@@ -388,7 +375,7 @@
                                 <h2 data-aos="flip-down"data-aos-delay="800" data-aos-duration="1000">Who We Are?</h2>
                                 <h6 data-aos="flip-right"data-aos-delay="850" data-aos-duration="1000">Meet the Entire Team</h6>
                                 <p ><div data-aos="fade-up" data-aos-delay="900" data-aos-duration="1000">
-                                        TWNAF crew is always growing. Today we are 15 members who are all volunteers and active in supporting TWNAF mission in Egypt and the MENA region. Led by Bassem Abdel Malek, all members including the leader are volunteers. We are accepting new members who can give us time and support our cause. If you are interested to join please send us on
+                                    {!!strip_tags($website_text->who_we_are)!!}
                                     <a href="">info@twnafeg.com</a>.</div></p>
                             </div>
                         </div><!-- /end col-md-4 -->
@@ -567,7 +554,7 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12 cont-txt" data-aos="fade-left" data-aos-delay="0" data-aos-duration="1000">
                         <h3>Get in <span>Touch</span></h3>
-                        <p>You can reach us through the following channels or simply send us an email anytime you want. We are open to all suggestions.</p>
+                        <p>{!!strip_tags($website_text->get_in_touch)!!}</p>
                     </div>
                     <div class="col-md-2 col-sm-4 col-ms-12  cont " data-aos="fade-up" data-aos-delay="0" data-aos-duration="1000">
                         <a href="https://wa.me/201208451555" target="_blank">
