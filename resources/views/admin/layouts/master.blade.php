@@ -150,6 +150,14 @@ desired effect
     @yield('js')
     <!--/ Custom JS -->
 
+    <!-- custom js_form_elements -->
+    @yield('js_form_elements')
+    <!--/ Custom js_form_elements -->
+
+    <!-- custom js_form_element_options -->
+    @yield('js_form_element_options')
+    <!--/ Custom js_form_element_options -->
+
 
   <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the

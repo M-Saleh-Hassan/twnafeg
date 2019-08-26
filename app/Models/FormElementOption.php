@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class FormElementOption extends Model
 {
-    protected $fillable = ['form_element_id', 'value', 'active'];
+    protected $fillable = ['form_element_id', 'value', 'active', 'default'];
 
 }

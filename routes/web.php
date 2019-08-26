@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',array(
+    'as'=>'en.home.index',
+    'uses'=>'english\HomeController@index'
+));
 
 // // Authentication Routes...
 Route::get('admin', 'Auth\LoginController@showLoginForm')->name('login');

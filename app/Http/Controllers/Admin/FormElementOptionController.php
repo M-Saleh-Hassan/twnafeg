@@ -21,6 +21,7 @@ class FormElementOptionController extends Controller
             $data = $request->all();
             $data['form_element_id'] = $element_id;
             $data['active'] = ($request->active == '1') ? 1 : 0;
+            $data['default'] = ($request->default == '1') ? 1 : 0;
 
             $option= FormElementOption::create($data);
 
@@ -66,6 +67,7 @@ class FormElementOptionController extends Controller
             $data = $request->all();
             $data['form_element_id'] = $element_id;
             $data['active'] = ($request->active == '1') ? 1 : 0;
+            $data['default'] = ($request->default == '1') ? 1 : 0;
 
             $option= FormElementOption::find($id)->update($data);
 

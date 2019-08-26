@@ -1,0 +1,268 @@
+
+:root{
+    --main-bg:#E0EAFC;
+    --main-color:#2584A5;
+    --main-text:#636464;
+    --sub-text: #253646;
+}
+/*============= Start General Style ===========*/
+*{
+    box-sizing: border-box;
+}
+body{
+    background: #E0EAFC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+    position: relative;
+    width: 100vw;
+    overflow-x: hidden;
+}
+.overflow-hidden{
+    overflow: hidden;
+}
+.container{
+    position: relative;
+}
+ul{
+    list-style-type:none;
+}
+/*============= End General Style ===========*/
+/*============= Start Header Style ===========*/
+#nav {
+    position: relative;
+    width: 100vw;
+    
+}
+#nav .navbar{
+    overflow: hidden;
+   left: 0;
+   right: 0;
+    padding: 0;
+    width: 100%;
+    z-index: 5;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+#nav .navNew{
+    background: rgb(245, 247, 252) !important;
+    
+}
+#nav .navbar .navbar-brand img{
+    padding: 10px;
+    height: 90px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+#nav .navNew .navbar-brand img{
+    padding: 0px;
+    height:55px !important;
+}
+#nav .navbar .navbar-collapse{
+    height: 100px;
+    padding: 0;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+#nav .navNew .navbar-collapse{
+    height: 70px;
+}
+.show{
+    height: 100% !important;
+    background: rgb(245, 247, 252);
+    border-radius: 10px;
+    transition: all .3s;
+    width: 90vw;
+
+   
+  }
+  
+#nav ul{
+    height: 100%;
+}
+#nav ul li{
+    height: 100%;
+    position: relative;
+}
+.show ul li{
+    height: 30px;
+   
+}
+#nav ul li a::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 0;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.3);
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+#nav .navNew ul li a::before{
+    background: rgba(10, 10, 10, 0.1);
+}
+
+#nav ul li:hover a::before,
+#nav ul li a.active::before{
+    height: 100%;
+  
+}  
+#nav ul li a{
+    padding: 0 10px ;
+    line-height: 100px;
+    margin: 0 auto;
+    color: #ffffff;
+    z-index: 10;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+   
+}
+.show ul li a{
+    height: 40px;
+    color: #636464 !important;
+    line-height: 35px !important;
+  }
+
+#nav ul li a.active{
+    background-color:rgba(0, 0, 0, 0) 
+}
+#nav .navNew ul li a{
+    color: #636464 !important;
+    line-height: 70px ;
+    
+}
+.navNew .show ul li a{
+    height: 40px;
+    color: #636464 !important;
+    line-height: 35px !important;
+}
+
+/*============= End  nav Style ===========*/
+
+/*============= Start title Style ===========*/
+#title{
+    position: relative;
+    overflow: hidden;
+    height: 50vh;
+    width: 100vw;
+    background: url(../img/traing-pics/4.jpg) center top no-repeat;
+    background-size: cover;
+}
+#title::after{
+    z-index: 1;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: .3;
+    background: #000046;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #1CB5E0, #000046);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #1CB5E0, #000046); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+#title .container{
+    height: 100%;
+}
+#title h1{
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    color: #fff;
+    height: 100%;
+   top: 70%;
+   font-family: 'Raleway', sans-serif;
+   font-weight: 700;
+   font-variant: small-caps;
+}
+/*============= End  title Style ===========*/
+/*============= start desc Style ===========*/
+#desc{
+    margin: 50px 0;
+}
+#desc p{
+    text-align: justify;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+ 
+/*============= start clients Style ===========*/
+#clients{
+    width: 100%;
+}
+#clients h2{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-variant: small-caps;
+}
+
+#clients .pics ul{
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    padding: 0;
+}
+#clients .pics ul li{
+    padding: 20px 10px;
+}
+#clients .pics ul li img{
+    height: 100px;
+    width: auto;
+
+}
+@media only screen and (max-width: 500px) {
+    #clients .pics ul li img{
+        height: 80px;
+        width: auto;
+    
+    }
+}
+
+
+/*============= End  clients Style ===========*/
+
+/*============= start FOOTER Style ===========*/
+footer {
+    margin: 0;
+    width: 100vw;
+}
+footer p{
+    margin: 0;
+    color: #636464;
+}
+footer ul{
+    margin: 0;
+}
+footer ul li{
+    display: inline-block;
+    padding:  0 10px;
+    text-decoration: none;
+}
+footer ul li a:link, footer ul li a:visited{
+    text-decoration: none;
+    color: #3E3E3E;
+}
+footer ul li a:hover{
+    color:#2584A5;
+}
+
+/*============= End FOOTER Style ===========*/

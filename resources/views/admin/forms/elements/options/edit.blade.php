@@ -6,13 +6,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-            element
+            option
             </h1>
             <ol class="breadcrumb">
                 <li><a href="{{route('admin.home.index')}}"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li><a href="{{route('admin.forms.index')}}">forms</a></li>
-                <li><a href="{{route('admin.forms.edit',[$form_id])}}">elements</a></li>
-                <li class="active">{{$current->label}}</li>
+                <li><a href="{{route('admin.forms.elements.edit',[$form_id, $element_id])}}">elements</a></li>
+                <li class="active">{{$current->value}}</li>
             </ol>
         </section>
 
@@ -28,7 +28,7 @@
                             <i class="fa fa-refresh fa-spin"></i>
                     </div>
                     <div class="box-header with-border">
-                        <h3 class="box-title">{{$current->label}}</h3>
+                        <h3 class="box-title">{{$current->value}}</h3>
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                             </button>
@@ -36,42 +36,12 @@
                     </div>
                     <div class="box-body">
                         <div class="col-md-12">
-                            <form method="post" id="update_element_element" enctype="multipart/form-data">
+                            <form method="post" id="update_option_option" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="box-body">
                                     <div class="form-group">
-                                        <label>label</label>
-                                        <input type="text" class="form-control" placeholder="element label" name="label" value="{{$current->label}}">
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label>type</label>
-                                        <select  class="form-control" name="type">
-                                            <option value="text"     @if($current->type == "text") selected @endif>text</option>
-                                            <option value="password" @if($current->type == "password") selected @endif>password</option>
-                                            <option value="checkbox" @if($current->type == "checkbox") selected @endif>checkbox</option>
-                                            <option value="textarea" @if($current->type == "textarea") selected @endif>textarea</option>
-                                            <option value="select"   @if($current->type == "select") selected @endif>select</option>
-                                            <option value="radio"    @if($current->type == "radio") selected @endif>radio</option>
-                                            <option value="date"     @if($current->type == "date") selected @endif>date</option>
-                                            <option value="hidden"   @if($current->type == "hidden") selected @endif>hidden</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>name attribute</label>
-                                        <input type="text" class="form-control" placeholder="element name" name="name" value="{{$current->name}}">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>id attribute</label>
-                                        <input type="text" class="form-control" placeholder="element id" name="id_attribute" value="{{$current->id_attribute}}">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>default value</label>
-                                        <input type="text" class="form-control" placeholder="element value" name="value" value="{{$current->value}}">
+                                        <label>value</label>
+                                        <input type="text" class="form-control" placeholder="option value" name="value" value="{{$current->value}}">
                                     </div>
 
                                     <div class="form-group">
@@ -80,7 +50,14 @@
                                                 <input type="checkbox" name="active"  value="1" @if($current->active) checked @endif>
                                                 <span class="slider round"></span>
                                             </label>
+                                    </div>
 
+                                    <div class="form-group">
+                                            <label>default</label>
+                                            <label class="switch">
+                                                <input type="checkbox" name="default"  value="1" @if($current->default) checked @endif>
+                                                <span class="slider round"></span>
+                                            </label>
                                     </div>
                                 </div>
                                 <!-- /.box-body -->
@@ -90,7 +67,7 @@
                     </div>
                 </div>
 
-                @includeWhen(in_array($current->type, ['checkbox', 'select', 'radio']) , 'admin.forms.elements.options')
+                @includeWhen(in_array($current->type, ['checkbox', 'select', 'radio']) , 'admin.forms.options.options')
 
             </div>
         </section>
@@ -106,12 +83,12 @@
     $(document).ready(function(){
 
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-        $('#update_element_element').on('submit', function(event){
+        $('#update_option_option').on('submit', function(event){
             event.preventDefault();
             $.ajax({
-                url:"{{route('admin.forms.elements.update', [$form_id, $current->id])}}",
+                url:"{{route('admin.forms.elements.options.update', [$form_id, $element_id, $current->id])}}",
                 method:"POST",
-                data:$("#update_element_element").serialize(),
+                data:$("#update_option_option").serialize(),
                 dataType:'JSON',
                 beforeSend: function(){
                     $(".overlay").toggleClass('hidden');
@@ -121,7 +98,6 @@
                     if(data.errors == '')
                     {
                         alert(data.message);
-                        window.location.replace(data.redirect);
                     }
                     else{
                         var errors_message = '';

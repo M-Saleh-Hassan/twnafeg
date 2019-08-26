@@ -114,7 +114,7 @@
     </div>
 </div>
 
-@section('js')
+@section('js_form_elements')
 <script>
 $(document).ready(function(){
 
