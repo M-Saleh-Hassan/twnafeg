@@ -1,7 +1,7 @@
 <header id="nav">
     <nav id="navbar" class="navbar navbar-expand-lg navbar-light position-fixed">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="{{route('en.home.index')}}">
                 <img class="logo" src="{{asset('') . logo()->link}}" alt="logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

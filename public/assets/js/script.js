@@ -1,7 +1,7 @@
 // <!-- Initialize niceScroll -->
 
 if (screen.width > 768) {
-  $(function() {  
+  $(function() {
     $("body").niceScroll({
       cursorwidth:"8px",
       cursorcolor: "#3c415e", // change cursor color in hex
@@ -22,17 +22,17 @@ else {
 $('#bigtext').bigtext();
 
 // <!-- Initialize white navbar -->
-$(window).on('scroll',function () {
-    var scrollDistance = $(window).scrollTop();
-    if (scrollDistance > 100) {
-        $('header .navbar').addClass('navNew')
-        $('.logo').attr('src','img/logo.png');
-    }else{
-        $('header .navbar').removeClass('navNew')
-        $('.logo').attr('src','img/logo-white.png');    
-    }
-    
-})
+// $(window).on('scroll',function () {
+//     var scrollDistance = $(window).scrollTop();
+//     if (scrollDistance > 100) {
+//         $('header .navbar').addClass('navNew')
+//         $('.logo').attr('src','img/logo.png');
+//     }else{
+//         $('header .navbar').removeClass('navNew')
+//         $('.logo').attr('src','img/logo-white.png');
+//     }
+
+// })
 $('.show li a').addClass('text-center')
 //how to go to the click section from nav
 $("#navbar").find(".link").click(function(e) {
@@ -110,7 +110,7 @@ $('.parallax').each(function() {
 
 
 
-$(function() {  
+$(function() {
   if ($(screen).width() < 800) {
     $(".snip1543").addClass("hover");
   }
@@ -118,30 +118,30 @@ $(function() {
 
 
 
-  
-  
+
+
  //controol media elements
 $("#media .btn-custom").click(
   function() {
     $("#media .btn-custom").toggleClass("seen");
     if($("#media .btn-custom").hasClass('seen')){
-      $("#media .btn-custom p").text('show Less');	
+      $("#media .btn-custom p").text('show Less');
       $("#media .btn-custom i").removeClass( "fas fa-arrow-down" ).addClass("fas fa-arrow-up");
-     
+
 
       $("#media .hiddable" ).animate({
         opacity: 1,
         height: "88%"
       }, 500)
-     
-     
+
+
 		} else {
       $("#media .btn-custom p").text('show More');
-      $("#media .btn-custom i").removeClass( "fas fa-arrow-up" ).addClass("fas fa-arrow-down");      
+      $("#media .btn-custom i").removeClass( "fas fa-arrow-up" ).addClass("fas fa-arrow-down");
       $("#media .hiddable" ).animate({
         opacity: 0,
         height: "0"
-      }, 500)      
+      }, 500)
 		}
   }
 )
@@ -163,11 +163,11 @@ $('.modal').iziModal({
 
 AOS.init({
   once: true
- 
+
 });
 
 if (localStorage.getItem('test')==5) {
-  
+
   $( document ).ready(function() {
     swal({
                     title: "Thanks for your registration",
@@ -177,9 +177,9 @@ if (localStorage.getItem('test')==5) {
                     confirmButtonColor: '#2F80ED',
                     confirmButtonText: 'Continue',
                     closeOnConfirm: false,
-                  
+
                 });
   });
-    
+
     localStorage.removeItem('test');
 }

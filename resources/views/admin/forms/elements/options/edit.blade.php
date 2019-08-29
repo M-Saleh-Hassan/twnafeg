@@ -40,6 +40,11 @@
                                 {{ csrf_field() }}
                                 <div class="box-body">
                                     <div class="form-group">
+                                        <label>Text</label>
+                                        <input type="text" class="form-control" placeholder="option text" name="text" value="{{$current->text}}">
+                                    </div>
+
+                                    <div class="form-group">
                                         <label>value</label>
                                         <input type="text" class="form-control" placeholder="option value" name="value" value="{{$current->value}}">
                                     </div>
@@ -67,7 +72,7 @@
                     </div>
                 </div>
 
-                @includeWhen(in_array($current->type, ['checkbox', 'select', 'radio']) , 'admin.forms.options.options')
+                {{-- @includeWhen(in_array($current->type, ['checkbox', 'select', 'radio']) , 'admin.forms.options.options') --}}
 
             </div>
         </section>

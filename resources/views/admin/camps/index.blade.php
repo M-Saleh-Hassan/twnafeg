@@ -6,12 +6,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-            News
+            camps
+            {{-- <small>tashtebk</small> --}}
             </h1>
             <ol class="breadcrumb">
-                <li><a href="{{route('admin.home.index')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="{{route('admin.news.index')}}">news</a></li>
-                <li class="active">{{$current->title}}</li>
+            <li><a href="{{route('admin.home.index')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">camps</li>
             </ol>
         </section>
 
@@ -27,7 +27,7 @@
                             <i class="fa fa-refresh fa-spin"></i>
                     </div>
                     <div class="box-header with-border">
-                        <h3 class="box-title">{{$current->title}}</h3>
+                        <h3 class="box-title">{{$current->website_title}}</h3>
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                             </button>
@@ -35,43 +35,29 @@
                     </div>
                     <div class="box-body">
                         <div class="col-md-12">
-                            <form method="post" id="add_news_form" enctype="multipart/form-data">
+                            <form method="post" id="add_category_form" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="box-body">
-                                        <div class="form-group">
-                                            <label>Title</label>
-                                            <input type="text" class="form-control" placeholder="news title" name="title" value="{{$current->title}}">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Description</label>
-                                            <textarea id="editor_news" name="description" rows="3" cols="160">{{$current->description}}</textarea>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>order</label>
-                                            <input type="text" class="form-control" placeholder="news order" name="order" value="{{$current->order}}">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Date</label>
-                                            <input type="text" class="form-control" placeholder="news date" name="date" value="{{$current->date}}">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Link</label>
-                                            <input type="text" class="form-control" placeholder="news link" name="place" value="{{$current->link}}">
-                                        </div>
+                                    <div class="form-group">
+                                        <label>Short Description</label>
+                                        <textarea id="editor_camp" name="short_description" rows="3" cols="160">{{$current->short_description}}</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Long Description</label>
+                                        <textarea id="editor_camp1" name="long_description" rows="3" cols="160">{{$current->long_description}}</textarea>
+                                    </div>
 
                                     <div class="form-group">
-                                        <label>Image</label>
-
-                                                <button type="button" class="btn btn-info mg" data-toggle="modal" data-target="#modal-default">
+                                        <label for="exampleInputPassword1">Main Image</label><br>
+                                        <div class="col-md-12">
+                                            <div class="col-md-4">
+                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-default">
                                                     Choose Image
                                                 </button>
-
+                                            </div>
+                                            <div class="col-md-8">
                                                 <p class="image_chosen"><a target='_blank' href='{{asset('')}}{{$current->image->link}}'>{{$current->image->original_name}}</a></p>
-
+                                            </div>
                                         </div>
                                         <br>
                                         <!-- Add Image Modal -->
@@ -84,10 +70,10 @@
                                                 <h4 class="modal-title">Choose Image</h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <select class="media_news_select form-control col-md-12" name="image_id">
+                                                    <select class="media_category_select form-control col-md-12" name="image_id">
                                                             <option value=""></option>
                                                             @foreach ($media as $one)
-                                                                <option @if($current->image->id == $one->id){{'selected'}} @endif data-img-label="<a class='link-image' target='_blank' href='{{asset('')}}{{$one->link}}'>{{$one->original_name}}</a>" data-img-src="{{asset('')}}{{$one->link}}" data-img-class="custom-image" value="{{$one->id}}">{{$one->original_name}}</option>
+                                                                <option @if($current->image_id == $one->id){{'selected'}} @endif data-img-label="<a target='_blank' href='{{asset('')}}{{$one->link}}'>{{$one->original_name}}</a>'" data-img-src="{{asset('')}}{{$one->link}}" data-img-class="custom-image" value="{{$one->id}}">{{$one->original_name}}</option>
                                                             @endforeach
                                                     </select>
                                                 </div>
@@ -96,6 +82,7 @@
                                             </div>
                                             <!-- /.modal-dialog -->
                                         </div>
+
                                     </div>
 
                                 </div>
@@ -115,31 +102,34 @@
 @endsection
 @section('js')
 <script>
-
-    $(".media_news_select").imagepicker(
+    $(".media_category_select").imagepicker(
         {
             show_label: true
         }
     )
 
     $(document).ready(function(){
-        $( ".media_news_select" ).change(function() {
+        CKEDITOR.replace('editor_camp');
+        CKEDITOR.replace('editor_camp1');
+
+        $( ".media_category_select" ).change(function() {
             $('#modal-default').modal('hide');
-            $(".image_chosen").html($(" .media_news_select option:selected").text());
+            $(".image_chosen").html($(" .media_category_select option:selected").text());
         });
 
-        CKEDITOR.replace('editor_news');
-
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-        $('#add_news_form').on('submit', function(news){
-            var description = CKEDITOR.instances.editor_news.getData();
-            description = trimString(description);
+        $('#add_category_form').on('submit', function(event){
+            var short_description = CKEDITOR.instances.editor_camp.getData();
+            short_description = trimString(short_description);
+
+            var long_description = CKEDITOR.instances.editor_camp1.getData();
+            long_description = trimString(long_description);
 
             event.preventDefault();
             $.ajax({
-                url:"{{route('admin.news.update', [$current->id])}}",
+                url:"{{route('admin.camps.update', [$current->id])}}",
                 method:"POST",
-                data:$("#add_news_form").serialize() + "&description=" + description,
+                data:$("#add_category_form").serialize() + "&short_description=" + short_description + "&long_description=" + long_description,
                 dataType:'JSON',
                 beforeSend: function(){
                     $(".overlay").toggleClass('hidden');
@@ -164,5 +154,18 @@
     });
 
 </script>
-
+<style>
+    li.custom-image
+    {
+        width:18.5%;
+    }
+    img.custom-image
+    {
+        height: 200px
+    }
+    span.select2
+    {
+        width: 100% !important;
+    }
+</style>
 @endsection

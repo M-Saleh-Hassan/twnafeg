@@ -16,6 +16,11 @@
                 <div class="box-body">
 
                     <div class="form-group">
+                        <label>Text</label>
+                        <input type="text" class="form-control" placeholder="option text" name="text">
+                    </div>
+
+                    <div class="form-group">
                         <label>value</label>
                         <input type="text" class="form-control" placeholder="option value" name="value">
                     </div>
@@ -62,7 +67,7 @@
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th>value</th>
+                        <th>text</th>
                         <th>edit</th>
                         <th>delete</th>
                     </tr>
@@ -71,7 +76,7 @@
                     @foreach ($current->options as $option)
                         <tr id="row{{$option->id}}">
                             <td>{{$option->id}}</td>
-                            <td>{{$option->value}}</td>
+                            <td>{{$option->text}}</td>
                             <td>
                                 <a  href="{{route('admin.forms.elements.options.edit', [$form_id, $current->id, $option->id])}}" class="btn btn-primary" data-content="{{$option->id}}">
                                     <i class="glyphicon glyphicon-edit"></i>

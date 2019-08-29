@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class News extends Model
+class Camp extends Model
 {
-    protected $table = "news";
-    protected $fillable = ['title', 'description', 'order', 'date', 'image_id', 'link'];
+    protected $fillable = ['image_id', 'short_description', 'long_description'];
 
     public function image()
     {
         return $this->belongsTo('App\Models\Media', 'image_id');
     }
+
 }

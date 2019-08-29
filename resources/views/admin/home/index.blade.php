@@ -26,14 +26,14 @@
                     <!-- small box -->
                     <div class="small-box bg-yellow">
                         <div class="inner">
-                        <h3>8</h3>
+                        <h3>{{$events_count}}</h3>
 
-                        <p>User Registrations</p>
+                        <p>Events</p>
                         </div>
                         <div class="icon">
-                        <i class="ion ion-person-add"></i>
+                        <i class="fa fa-calendar"></i>
                         </div>
-                        <a href="#" class="small-box-footer">
+                        <a href="{{route('admin.events.index')}}" class="small-box-footer">
                         More info <i class="fa fa-arrow-circle-right"></i>
                         </a>
                     </div>
@@ -42,14 +42,14 @@
                     <!-- small box -->
                     <div class="small-box bg-red">
                         <div class="inner">
-                        <h3>5</h3>
+                        <h3>{{$forms_count}}</h3>
 
-                        <p>Products</p>
+                        <p>Events Forms</p>
                         </div>
                         <div class="icon">
-                        <i class="ion ion-pie-graph"></i>
+                        <i class="fa fa-wpforms"></i>
                         </div>
-                        <a href="#" class="small-box-footer">
+                        <a href="{{route('admin.forms.index')}}" class="small-box-footer">
                         More info <i class="fa fa-arrow-circle-right"></i>
                         </a>
                     </div>

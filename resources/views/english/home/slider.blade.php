@@ -2,7 +2,7 @@
     <div class="home-container">
             <div class="swiper-wrapper">
                 @foreach ($slides as $slide)
-                    <div class="swiper-slide parallax" style="background: url({{asset('') .  $slide->image->link}}) center top;">
+                    <div class="swiper-slide parallax" style="background: url({{asset('') .  $slide->image->link}}) center top; background-size: cover">
                             <div class="container text">
                                 @foreach ($slide->text()->orderBy('order', 'ASC')->get() as $text)
                                     @if($text->type == "h1")     <h1>{{$text->text}}</h1>

@@ -38,19 +38,43 @@
                             <form method="post" id="add_event_form" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="box-body">
-                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label>Form</label>
+                                            <select class="form-control col-md-12" name="form_id">
+                                                @foreach ($forms as $form)
+                                                    <option value="{{$form->id}}" @if($current->form_id == $form->id)selected @endif>{{$form->title}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
                                             <label>Title</label>
                                             <input type="text" class="form-control" placeholder="event title" name="title" value="{{$current->title}}">
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Description</label>
+                                            <label>Home Description</label>
                                             <textarea id="editor_event" name="description" rows="3" cols="160">{{$current->description}}</textarea>
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Date Text</label>
-                                            <input type="text" class="form-control" placeholder="event date" name="date_text" value="{{$current->date_text}}">
+                                            <label>Modal Description</label>
+                                            <textarea id="editor_event1" name="description" rows="3" cols="160">{{$current->long_description}}</textarea>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Home Date Days</label>
+                                            <input type="text" class="form-control" placeholder="event Home Date Days" value="{{$current->home_date_days}}" name="home_date_days">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Home Date Month</label>
+                                            <input type="text" class="form-control" placeholder="event Home Date Month" value="{{$current->home_date_month}}" name="home_date_month">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Modal Date Text</label>
+                                            <input type="text" class="form-control" placeholder="event date" value="{{$current->date_text}}" name="date_text">
                                         </div>
 
                                         <div class="form-group">
@@ -135,6 +159,7 @@
 
     $(document).ready(function(){
         CKEDITOR.replace('editor_event');
+        CKEDITOR.replace('editor_event1');
 
         $( ".media_event_select" ).change(function() {
             $('#modal-default').modal('hide');
@@ -144,11 +169,15 @@
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $('#add_event_form').on('submit', function(event){
             var description = CKEDITOR.instances.editor_event.getData();
+            var long_description = CKEDITOR.instances.editor_event1.getData();
+            description = trimString(description);
+            long_description = trimString(long_description);
+
             event.preventDefault();
             $.ajax({
                 url:"{{route('admin.events.update', [$current->id])}}",
                 method:"POST",
-                data:$("#add_event_form").serialize() + "&description=" + description,
+                data:$("#add_event_form").serialize() + "&description=" + description + "&long_description=" + long_description,
                 dataType:'JSON',
                 beforeSend: function(){
                     $(".overlay").toggleClass('hidden');

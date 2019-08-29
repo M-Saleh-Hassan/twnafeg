@@ -26,9 +26,11 @@ class NewsController extends Controller
     {
         $validation = Validator::make($request->all(),
         [
-            'title'    => 'required|max:51|min:3',
-            'image_id' => 'required',
-            'date'     => 'required',
+            'title'       => 'required|max:51|min:3',
+            'description' => 'required',
+            'order'       => 'required',
+            'image_id'    => 'required',
+            'date'        => 'required',
         ]);
 
         if($validation->passes())
@@ -70,6 +72,8 @@ class NewsController extends Controller
         $validation = Validator::make($request->all(),
         [
             'title'    => 'required|max:51|min:3',
+            'description' => 'required',
+            'order'       => 'required',
             'image_id' => 'required',
             'date'     => 'required',
         ]);

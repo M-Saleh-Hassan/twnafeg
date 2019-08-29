@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Models\Event;
+use App\Models\Form;
 use App\Models\Media;
 use Validator;
 
@@ -14,10 +15,12 @@ class EventController extends Controller
     public function index()
     {
         $media = Media::all();
+        $forms = Form::all();
         $events = Event::OrderBy('date_to_compare','DESC')->get();
 
         return view('admin.events.index')
         ->with('media', $media)
+        ->with('forms', $forms)
         ->with('events', $events)
         ->with('counter', 1);
     }
@@ -28,9 +31,13 @@ class EventController extends Controller
         [
             'title'           => 'required|max:51|min:3',
             'image_id'        => 'required',
+            'form_id'         => 'required',
             'date_text'       => 'required',
             'date_to_compare' => 'required',
             'description'     => 'required',
+            'long_description'=> 'required',
+            'home_date_days'  => 'required',
+            'home_date_month' => 'required',
             'place'           => 'required',
             'map'             => 'required',
             'price'           => 'required',
@@ -63,10 +70,12 @@ class EventController extends Controller
     {
         $current = Event::find($id);
         $media = Media::all();
+        $forms = Form::all();
 
         return view('admin.events.edit')
         ->with('current', $current)
         ->with('media', $media)
+        ->with('forms', $forms)
         ->with('counter', 1);
 
     }
@@ -77,9 +86,13 @@ class EventController extends Controller
         [
             'title'           => 'required|max:51|min:3',
             'image_id'        => 'required',
+            'form_id'         => 'required',
             'date_text'       => 'required',
             'date_to_compare' => 'required',
             'description'     => 'required',
+            'long_description'=> 'required',
+            'home_date_days'  => 'required',
+            'home_date_month' => 'required',
             'place'           => 'required',
             'map'             => 'required',
             'price'           => 'required',

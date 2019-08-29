@@ -45,6 +45,16 @@
 
 
                                     <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea id="editor_news" name="description" rows="3" cols="160"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>order</label>
+                                        <input type="text" class="form-control" placeholder="news order" name="order">
+                                    </div>
+
+                                    <div class="form-group">
                                         <label>Date</label>
                                         <input type="text" class="form-control" placeholder="news date" name="date">
                                     </div>
@@ -166,6 +176,8 @@
     )
 
     $(document).ready(function(){
+        CKEDITOR.replace('editor_news');
+
         var t = $('#example').DataTable({
             "order": [[ 0, "desc" ]]
         });
@@ -177,11 +189,14 @@
 
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $('#add_news_form').on('submit', function(news){
+            var description = CKEDITOR.instances.editor_news.getData();
+            description = trimString(description);
+
             event.preventDefault();
             $.ajax({
                 url:"{{ route('admin.news.save') }}",
                 method:"POST",
-                data:$("#add_news_form").serialize(),
+                data:$("#add_news_form").serialize()+ "&description=" + description,
                 dataType:'JSON',
                 beforeSend: function(){
                     $(".overlay").toggleClass('hidden');

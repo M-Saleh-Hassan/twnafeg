@@ -45,6 +45,8 @@
 
       <li><a href="{{route('admin.news.index')}}"><i class="fa fa-link"></i> <span>News</span></a></li>
 
+      <li><a href="{{route('admin.camps.index')}}"><i class="fa fa-link"></i> <span>Camps</span></a></li>
+
       <li><a href="{{route('admin.text.index')}}"><i class="fa fa-link"></i> <span>Website Text</span></a></li>
 
       <li><a href="{{route('admin.settings.index')}}"><i class="fa fa-link"></i> <span>Settings</span></a></li>

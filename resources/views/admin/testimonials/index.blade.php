@@ -129,6 +129,7 @@
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $('#add_testimonial_form').on('submit', function(testimonial){
             var text = CKEDITOR.instances.editor_testimonial.getData();
+            text = trimString(text);
             event.preventDefault();
             $.ajax({
                 url:"{{ route('admin.testimonials.save') }}",

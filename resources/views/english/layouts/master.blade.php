@@ -30,6 +30,7 @@
 
      <!-- style CSS -->
      <link href="{{asset('assets')}}/css/style.css" rel="stylesheet" type="text/css">
+     @yield('custom-css')
 
     <title>{{websiteTitlte()}}</title>
     <link rel="icon" type="image/ico" href="{{asset('') . fav()->link}}" />
@@ -77,6 +78,20 @@
 
     <!-- script JavaScript -->
     <script src="{{asset('assets')}}/js/script.js"></script>
+    <script src="{{asset('assets')}}/js/forms.js"></script>
+    <script>
+    $(window).on('scroll',function () {
+    var scrollDistance = $(window).scrollTop();
+        if (scrollDistance > 100) {
+            $('header .navbar').addClass('navNew')
+            $('.logo').attr('src','{{asset('assets')}}/img/logo.png');
+        }else{
+            $('header .navbar').removeClass('navNew')
+            $('.logo').attr('src','{{asset('assets')}}/img/logo-white.png');
+        }
 
+    })
+
+    </script>
 </body>
 </html>

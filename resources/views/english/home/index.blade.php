@@ -92,102 +92,46 @@
                     <h1 class="text-center title" data-aos="zoom-in" data-aos-duration="1000">Our Events</h1>
                     <div class=" justify-content-center underline" data-aos="zoom-in" data-aos-duration="1000"></div>
                     <h1 data-aos="fade-up" data-aos-duration="1000">Upcoming Events</h1>
-                    <!-- <div class="wrapper col-lg-4 col-md-12">
-                        <figure class="snip1527 ">
-                                <div class="image"><img src="{{asset('assets')}}/img/events/may.jpeg" alt="pr-sample23" /></div>
-                                <figcaption>
-                                    <div class="date"><span class="day">23-25</span><span class="month">May</span></div>
-                                    <h3>Cassie's fatherhood 3 days workshop</h3>
-                                    <p>
-                                    Come and join us in a 3-day camp where you will get to bond and spend quality time with your child and learn a lot about fatherhood.
-                                    </p>
-                                </figcaption>
-                                <a class="r-info" data-izimodal-open="#modal1"data-izimodal-open="" data-izimodal-transitionin="fadeInDown" ></a>
-                        </figure>
-                    </div>
+                @foreach ($events as $event)
                     <div class="wrapper col-lg-4 col-md-12">
-                    <figure class="snip1527 ">
-                            <div class="image"><img src="{{asset('assets')}}/img/events/may2.jpeg" alt="pr-sample23" /></div>
-                            <figcaption>
-                            <div class="date"><span class="day">26</span><span class="month">May</span></div>
-                            <h3>Cassie's fatherhood training session</h3>
-                            <p>
-                                    A two hours fatherhood training session that will be conducted by Cassie Carstens; founder of TWNAF movement.
-                            </p>
-
-                            </figcaption>
-                            <a href="#modal2" class="r-info" data-izimodal-open="" data-izimodal-transitionin="fadeInDown" ></a>
-                    </figure>
-                </div> -->
-                <div class="wrapper col-lg-4 col-md-12">
-                    <figure class="snip1527 ">
-                            <div class="image"><img src="{{asset('assets')}}/img/events/camp3.jpeg" alt="pr-sample23" /></div>
-                            <figcaption>
-                            <div class="date"><span class="day">24-26</span><span class="month">Oct</span></div>
-                            <h3>TWNAF Father & Child Camp</h3>
-                            <p>
-
-                                A Three days father & child camp for a fun & quality time between fathers and their children as well as some training sessions on Fathehood .
-                            </p>
+                        <figure class="snip1527 ">
+                                <div class="image"><img src="{{asset('') . $event->image->link}}" alt="pr-sample23" /></div>
+                                <figcaption>
+                                <div class="date"><span class="day">{{$event->home_date_days}}</span><span class="month">{{$event->home_date_month}}</span></div>
+                                <h3>{{$event->title}}</h3>
+                                <p>
+                                    {!! strip_tags($event->description) !!}
+                                </p>
 
 
-                            </figcaption>
-                            <a href="" class="r-info" data-izimodal-open="#modal3" data-izimodal-transitionin="fadeInDown" ></a>
-                    </figure>
+                                </figcaption>
+                            <a href="" class="r-info" data-izimodal-open="#modal-{{$event->id}}" data-izimodal-transitionin="fadeInDown" ></a>
+                        </figure>
 
-                </div>
-                </div>
-                <!--  ----------------------------------------------------------------------  -->
-                <!-- pop up windows -->
-                <!-- <div id="modal1" class="modal">
-                    <div class="modal-wrapper">
-                            <div class="modal-img">
-                            <img src="{{asset('assets')}}/img/events/may.jpeg" alt="">
-                            </div>
-                        <div class="modal-content">
-                            <h3>Cassie's fatherhood 3 days workshop</h2>
-
-                            <p>A three days fatherhood workshop conducted by Cassie Carstens and the Egypt TWNAF leaders.</p>
-                            <p><b>Date:</b> 23-25 May 2019</p>
-                            <p><b>Place:</b> Beit El Wadi <a href="https://goo.gl/maps/ojw9NmRaTDdvYAZi9">Get directions</a> </p>
-                            <p><b>price:</b> 1000 EGP</p>
-                            <a href="http://bit.ly/TWNAF_egy" target="_blank" class="modal-button">Register</a>
-                        </div>
                     </div>
+
+                @endforeach
                 </div>
-                <div id="modal2"  class="modal">
-                    <div class="modal-wrapper">
-                            <div class="modal-img">
-                                <img src="{{asset('assets')}}/img/events/may2.jpeg" alt="">
-                            </div>
-                            <div class="modal-content">
-                                    <h3>Cassie's fatherhood training session</h2>
 
-                                    <p>A two hours fatherhood training session that will be conducted by Cassie Carstens.</p>
-
-                                    <p><b>Date:</b> 26 May 2019</p>
-                                    <p><b>Place:</b> Triumph Hotel (new cairo) <a href="https://goo.gl/maps/M7u2NT4bje2xgeyw9">Get directions</a></p>
-                                    <p><b>price:</b> 100 EGP</p>
-                                    <a href="https://accept.paymobsolutions.com/p/aR9" target="_blank" class="modal-button">Register</a>
-                            </div>
-                    </div>
-                </div> -->
-                <div id="modal3"  class="modal">
+                @foreach ($events as $event)
+                    <div id="modal-{{$event->id}}"  class="modal">
                         <div class="modal-wrapper">
                                 <div class="modal-img">
-                                    <img src="{{asset('assets')}}/img/events/camp3.jpeg" alt="">
+                                    <img src="{{asset('') . $event->image->link}}" alt="">
                                 </div>
                                 <div class="modal-content">
-                                        <h3>TWNAF Father & Child Camp</h2>
+                                        <h3>{{$event->title}}</h2>
 
-                                        <p>Come and join us in a 3-day camp where you will get to bond and spend quality time with your child and learn a lot about fatherhood.</p>
-                                        <p><b>Date:</b> 24-26 October 2019</p>
-                                        <p><b>Place:</b> Beit El Wadi<a href="https://goo.gl/maps/ojw9NmRaTDdvYAZi9">Get directions</a> </p>
-                                        <p><b>price:</b> 2200 EGP</p>
-                                        <a href="events forms/testeg.html" target="_blank" class="modal-button">Register Now</a>
+                                        <p>{!! strip_tags($event->long_description) !!}</p>
+                                        <p><b>Date:</b> {{$event->date_text}}</p>
+                                        <p><b>Place:</b> {{$event->place}}<a href="{{$event->map}}">Get directions</a> </p>
+                                        <p><b>price:</b> {{$event->price}}</p>
+                                        <a href="{{route('en.events.index', [$event->id])}}" target="_blank" class="modal-button">Register Now</a>
                                 </div>
                         </div>
                     </div>
+
+                @endforeach
                 <!--  ----------------------------------------------------------------------  -->
 
             </div>
@@ -202,7 +146,7 @@
                                     <h3>Fatherhood training</h3>
                                     <p>is composed of many sessions to teach men how to be better father.</p>
                                 </figcaption>
-                                <a href="training.html"></a>
+                                <a href="{{route('en.home.trainings')}}"></a>
                         </figure>
                     </div>
                     <div class="wrapper col-lg-4"  data-aos="fade-up" data-aos-duration="1000">
@@ -213,7 +157,7 @@
                                     <h3>Fatherhood sessions</h3>
                                     <p>is composed of many sessions to teach men how to be better father.</p>
                                 </figcaption>
-                                <a href="sessions.html"></a>
+                                <a href="{{route('en.home.sessions')}}"></a>
                         </figure>
                     </div>
                     <div class="wrapper col-lg-4 "data-aos="fade-left" data-aos-duration="1000">
@@ -224,7 +168,7 @@
                                     <h3>Father & Child camps</h3>
                                     <p>We focus in these camps on the positive effect of fatherhood on children.</p>
                                 </figcaption>
-                                <a href="camps.html"></a>
+                                <a href="{{route('en.home.camps')}}"></a>
                         </figure>
                     </div>
 
@@ -245,21 +189,11 @@
                 <h1 data-aos="flip-down" data-aos-duration="1000">Testimonials</h1>
                 <div class="swiper-container" data-aos="flip-up" data-aos-duration="1000">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-
-                            <p>"My Stubborn mind, though trying to be positive towards my role as a father , never fully realized the impact i have on my family and specifically the kids"</p>
-                        </div>
-                        <div class="swiper-slide">
-
-                            <p>"the one message I left the camp with is : every move I make has a tremendous impact on my kids and they deserve a good father who is fighting his demons to offer them a better life"</p>
-                        </div>
-                        <div class="swiper-slide">
-
-                            <p>The fatherhood training had a huge impact on my relation with my wife because it introduced me to the 5 languages of love and made me realize that my wife love tank could be filled in ways that are different from mine and to undertsand that i needed to be less selfish and less centered on my emotions alone"</p>
-                        </div>
-                        <div class="swiper-slide">
-                            <p>One sentence really hit me in the face and made me realize how important my love for my wife is, this sentence was: the best gift you can offer your kids is to love their mom.</p>
-                        </div>
+                        @foreach ($testimonials as $testimonial)
+                            <div class="swiper-slide">
+                                <p>{!! strip_tags($testimonial->text) !!}</p>
+                            </div>
+                        @endforeach
                     </div>
                     <!-- Add Pagination -->
                 <div class="swiper-pagination"></div>
@@ -276,71 +210,44 @@
             <h1 class="text-center title" data-aos="zoom-in" data-aos-duration="1000">What media said about us </h1>
             <div class=" justify-content-center underline" data-aos="zoom-in" data-aos-duration="1000"></div>
             <div class="row blogs" >
-                    <div class="col-md-4" data-aos="fade-right" data-aos-duration="1000">
-                        <div class="blog" ><a href="http://www.wataninet.com/2018/05/الكوكايين-الرقمي-إدمان-يهدد-خلايا-ال/" target="_blank">
-                            <div class="date  ">13 may 2018</div>
-                            <img class="w-100" src="{{asset('assets')}}/img/media/wataninet.jpg" alt="blog-img">
-                            <div class="blog-content  ">
-                                <h3 class="text-capitalize">wataninet</h3>
-                                <p>الكوكايين الرقمي .. إدمان الانترنت حقيقة وليس تعبيراً مجازياً</p>
-                            </div></a></div>
+                    @foreach ($news->forPage(1,3) as $single)
+                        <div class="col-md-4" data-aos="fade-
+                            @if($loop->index == 0)right
+                            @elseif($loop->index == 1)up
+                            @elseif($loop->index ==2)left
+                            @endif
+                            " data-aos-duration="1000">
+                            <div class="blog" >
+                                @if (!empty($single->link))<a href="{{$single->link}}" target="_blank">
+                                @else <a href="{{route('en.home.news', [$single->id])}}" target="_blank">
+                                @endif
 
-                    </div>
-                    <div class="col-md-4" data-aos="fade-up" data-aos-duration="1000">
-                        <div class="blog"><a href="https://www.cbc-eg.com/topic/cbc/من_جنوب_أفريقيا_للقاهرة_العالم_يحتاج_إلى_أب_أكثر_من_مجرد_شعار_CBC " target="_blank">
-                            <div class="date  ">8 Apr 2019</div>
-                            <img class="w-100" src="{{asset('assets')}}/img/media/cbc.jpg" alt="blog-img">
-                            <div class="blog-content  ">
-                                <h3 class="text-capitalize">CBC</h3>
-                                <p>من جنوب أفريقيا للقاهرة العالم يحتاج إلى أب أكثر من مجرد شعار</p>
-                            </div></a></div>
-                    </div>
-                    <div class="col-md-4" data-aos="fade-left" data-aos-duration="1000">
-                    <div class="blog "><a href="https://www.vetogate.com/3450539" target="_blank">
-                        <div class="date  ">22 Apr 2019</div>
-                        <img class="w-100" src="{{asset('assets')}}/img/media/vetogate.jpg" alt="blog-img">
-                        <div class="blog-content  ">
-                            <h3 class="text-capitalize">vetogate</h3>
-                            <p>«العالم يحتاج إلى أب».. رحلة مع عيالك تقربكم من بعض</p>
-                        </div></a></div>
-                    </div>
-                    <div class="col-md-4 hiddable">
-                        <div class="blog "><a href="https://gulfnews.com/world/mena/in-egypt-camp-teaches-men-how-to-be-good-fathers-1.1555307718431" target="_blank">
-                            <div class="date  ">15 Apr 2019</div>
-                            <img class="w-100" src="{{asset('assets')}}/img/media/gulfnews.jpg" alt="blog-img">
-                            <div class="blog-content  ">
-                                <h3 class="text-capitalize">Gulf News</h3>
-                                <p>In Egypt, camp teaches men how to be good fathers</p>
-                            </div></a></div>
-                    </div>
-                    <div class="col-md-4 hiddable">
-                        <div class="blog "><a href="{{asset('assets')}}/img/media/1.html" target="_blank">
-                            <div class="date  ">16 Apr 2019</div>
-                            <img class="w-100" src="{{asset('assets')}}/img/media/WhatsApp Image 2019-04-16 at 3.15.33 PM.jpeg" alt="blog-img">
-                            <div class="blog-content  ">
-                                <h3 class="text-capitalize">Editorial</h3>
-                                <p> FATHERHOOD... A PROFESSION NOT A TITLE</p>
-                            </div></a></div>
-                    </div>
-                    <div class="col-md-4 hiddable">
-                            <div class="blog  "><a href="{{asset('assets')}}/img/media/2.html" target="_blank">
-                                <div class="date  ">31 Mar 2019</div>
-                                <img class="w-100" src="{{asset('assets')}}/img/media/WhatsApp Image 2019-04-16 at 3.17.33 PM.jpeg" alt="blog-img">
+                                <div class="date  ">{{$single->date}}</div>
+                                <img class="w-100" src="{{asset('') . $single->image->link}}" alt="blog-img">
                                 <div class="blog-content  ">
-                                    <h3 class="text-capitalize">Facebook</h3>
-                                    <p>رائ إيهاب فارس احد الاباء في كامب "العالم يحتاج إلي اب " </p>
-                        </div></a></div>
-                    </div>
-                    <div class="col-md-4 hiddable ">
-                            <div class="blog  "><a href="{{asset('assets')}}/img/media/3.html" target="_blank">
-                                <div class="date  ">13 Apr 2019</div>
-                                <img class="w-100" src="{{asset('assets')}}/img/media/PHOTO-2019-04-14-19-41-34.jpg" alt="blog-img">
-                                <div class="blog-content  ">
-                                    <h3 class="text-capitalize">byoot</h3>
-                                    <p>حركة عالمية في 80 دولة تنظم معسكرات للتعريف بدور الأب</p>
-                        </div></a></div>
-                    </div>
+                                    <h3 class="text-capitalize">{{$single->title}}</h3>
+                                    <p>{!! strip_tags($single->description) !!}</p>
+                                </div>
+                            </a>
+                            </div>
 
+                        </div>
+                    @endforeach
+
+                    @foreach ($news->slice(3) as $item)
+                        <div class="col-md-4 hiddable">
+                            <div class="blog ">
+                                @if (!empty($item->link))<a href="{{$item->link}}" target="_blank">
+                                @else <a href="{{route('en.home.news', [$item->id])}}" target="_blank">
+                                @endif
+                                <div class="date  ">{{$item->date}}</div>
+                                <img class="w-100" src="{{asset('') . $item->image->link}}" alt="blog-img">
+                                <div class="blog-content  ">
+                                    <h3 class="text-capitalize">{{$item->title}}</h3>
+                                    <p>{!! strip_tags($item->description) !!}</p>
+                                </div></a></div>
+                        </div>
+                    @endforeach
 
                 </div>
                 <div class="row col-12 justify-content-center text-center "data-aos="zoom-in" data-aos-duration="1000">
@@ -556,29 +463,33 @@
                         <h3>Get in <span>Touch</span></h3>
                         <p>{!!strip_tags($website_text->get_in_touch)!!}</p>
                     </div>
-                    <div class="col-md-2 col-sm-4 col-ms-12  cont " data-aos="fade-up" data-aos-delay="0" data-aos-duration="1000">
-                        <a href="https://wa.me/201208451555" target="_blank">
-                        <div class="i-container text-center"><i class="fab fa-whatsapp fa-3x"></i></div>
-                        <p class="title text-center">What's App</p>
-                        <div class="breaker"></div>
-                        <p class="data text-center">+201208451555</p>
-                    </a>
+                    @if ($setting->whatsapp_number_show)
+                        <div class="col-md-2 col-sm-4 col-ms-12  cont " data-aos="fade-up" data-aos-delay="0" data-aos-duration="1000">
+                            <a href="https://wa.me/201208451555" target="_blank">
+                                <div class="i-container text-center"><i class="fab fa-whatsapp fa-3x"></i></div>
+                                <p class="title text-center">What's App</p>
+                                <div class="breaker"></div>
+                                <p class="data text-center">{{$setting->whatsapp_number}}</p>
+                            </a>
+                        </div>
+                    @endif
 
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-ms-12 cont " data-aos="fade-down" data-aos-delay="0" data-aos-duration="1000">
-                        <a href="https://www.facebook.com/%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-%D9%8A%D8%AD%D8%AA%D8%A7%D8%AC-%D8%A7%D9%84%D9%8A-%D8%A3%D8%A8-The-World-Needs-A-Father-Egypt-108860153191195/" target="_blank">
-                        <div class="i-container text-center"><i class="fab fa-facebook-f fa-3x"></i></div>
-                        <p class="title text-center">Facebook</p>
-                        <div class="breaker"></div>
-                        <p class="data text-center">The World Needs A Father - Egypt</p>
-                        </a>
-                    </div>
+                    @if ($setting->facebook_link_show)
+                        <div class="col-md-2 col-sm-4 col-ms-12 cont " data-aos="fade-down" data-aos-delay="0" data-aos-duration="1000">
+                            <a href="{{$setting->facebook_link}}" target="_blank">
+                                <div class="i-container text-center"><i class="fab fa-facebook-f fa-3x"></i></div>
+                                <p class="title text-center">Facebook</p>
+                                <div class="breaker"></div>
+                                <p class="data text-center">The World Needs A Father - Egypt</p>
+                            </a>
+                        </div>
+                    @endif
                     <div class="col-md-2 col-sm-4 col-ms-12 cont " data-aos="fade-up" data-aos-delay="0" data-aos-duration="1000">
-                            <a href="mailto:info@twnafeg.com" target="_blank">
+                            <a href="mailto:{{$setting->email}}" target="_blank">
                             <div class="i-container text-center"><i class="far fa-envelope fa-3x"></i></div>
                             <p class="title text-center">E-mail</p>
                             <div class="breaker"></div>
-                            <p class="data text-center">info@twnafeg.com</p>
+                            <p class="data text-center">{{$setting->email}}</p>
                             </a>
                     </div>
                 </div>

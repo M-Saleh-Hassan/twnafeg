@@ -13,7 +13,8 @@ class FormElementOptionController extends Controller
     {
         $validation = Validator::make($request->all(),
         [
-            'value' => 'required|max:51|min:3',
+            'text' => 'required',
+            'value' => 'required',
         ]);
 
         if($validation->passes())
@@ -29,7 +30,7 @@ class FormElementOptionController extends Controller
                 'message'        => 'option saved Successfully',
                 'errors'         => '',
                 'option_id'    => $option->id,
-                'option_value'    => $option->value,
+                'option_value'    => $option->text,
                 'option_link_edit'=> route('admin.forms.elements.options.edit', [$form_id, $element_id, $option->id]),
             ]);
         }
@@ -59,7 +60,8 @@ class FormElementOptionController extends Controller
     {
         $validation = Validator::make($request->all(),
         [
-            'value' => 'required|max:51|min:3',
+            'text' => 'required',
+            'value' => 'required',
         ]);
 
         if($validation->passes())

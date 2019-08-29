@@ -15,6 +15,28 @@ Route::get('/',array(
     'as'=>'en.home.index',
     'uses'=>'english\HomeController@index'
 ));
+Route::get('/camps',array(
+    'as'=>'en.home.camps',
+    'uses'=>'english\HomeController@camps'
+));
+Route::get('/sessions',array(
+    'as'=>'en.home.sessions',
+    'uses'=>'english\HomeController@sessions'
+));
+Route::get('/trainings',array(
+    'as'=>'en.home.trainings',
+    'uses'=>'english\HomeController@trainings'
+));
+
+Route::get('/news/{news_id}',array(
+    'as'=>'en.home.news',
+    'uses'=>'english\HomeController@news'
+));
+
+Route::get('/events/{event_id}',array(
+    'as'=>'en.events.index',
+    'uses'=>'english\EventController@index'
+));
 
 // // Authentication Routes...
 Route::get('admin', 'Auth\LoginController@showLoginForm')->name('login');
@@ -57,7 +79,7 @@ Route::group(['middleware' => ['checkAuth']], function ()
                 'uses'=>'Admin\MediaController@deleteFile'
                 ));
 
-            /* website text */
+            /* Website Text */
             Route::get('/text',array(
                 'as'=>'admin.text.index',
                 'uses'=>'Admin\WebsiteTextController@index'
@@ -75,6 +97,16 @@ Route::group(['middleware' => ['checkAuth']], function ()
 			Route::post('/settings/update/{id}',array(
 				'as'=>'admin.settings.update',
 				'uses'=>'Admin\SettingsController@update'
+                ));
+
+            /* Camps */
+			Route::get('/camps',array(
+				'as'=>'admin.camps.index',
+				'uses'=>'Admin\CampController@index'
+				));
+			Route::post('/camps/update/{id}',array(
+				'as'=>'admin.camps.update',
+				'uses'=>'Admin\CampController@update'
 				));
 
             /* Slides */

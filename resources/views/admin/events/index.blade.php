@@ -36,79 +36,100 @@
                         <div class="col-md-12">
                             <form method="post" id="add_event_form" enctype="multipart/form-data">
                                 {{ csrf_field() }}
-                                <div class="box-body">
 
-                                    <div class="form-group">
-                                        <label>Title</label>
-                                        <input type="text" class="form-control" placeholder="event title" name="title">
+                                <div class="form-group">
+                                    <label>Form</label>
+                                    <select class="form-control" name="form_id">
+                                        @foreach ($forms as $form)
+                                            <option value="{{$form->id}}">{{$form->title}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Title</label>
+                                    <input type="text" class="form-control" placeholder="event title" name="title">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Home Description</label>
+                                    <textarea id="editor_event" name="description" rows="3" cols="160"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Modal Description</label>
+                                    <textarea id="editor_event1" name="long_description" rows="3" cols="160"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Home Date Days</label>
+                                    <input type="text" class="form-control" placeholder="event Home Date Days" name="home_date_days">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Home Date Month</label>
+                                    <input type="text" class="form-control" placeholder="event Home Date Month" name="home_date_month">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Modal Date Text</label>
+                                    <input type="text" class="form-control" placeholder="event date" name="date_text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Date To Compare</label>
+                                    <input type="date" class="form-control" placeholder="event date compare" name="date_to_compare">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Place</label>
+                                    <input type="text" class="form-control" placeholder="event place" name="place">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Map</label>
+                                    <input type="text" class="form-control" placeholder="event map" name="map">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Price</label>
+                                    <input type="text" class="form-control" placeholder="event price" name="price">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Image</label><br>
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-default">
+                                                Choose Image
+                                            </button>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <p class="image_chosen"></p>
+                                        </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label>Description</label>
-                                        <textarea id="editor_event" name="description" rows="3" cols="160"></textarea>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Date Text</label>
-                                        <input type="text" class="form-control" placeholder="event date" name="date_text">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Date To Compare</label>
-                                        <input type="date" class="form-control" placeholder="event date compare" name="date_to_compare">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Place</label>
-                                        <input type="text" class="form-control" placeholder="event place" name="place">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Map</label>
-                                        <input type="text" class="form-control" placeholder="event map" name="map">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Price</label>
-                                        <input type="text" class="form-control" placeholder="event price" name="price">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Image</label><br>
-                                        <div class="col-md-12">
-                                            <div class="col-md-4">
-                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-default">
-                                                    Choose Image
-                                                </button>
+                                    <br>
+                                    <!-- Add Image Modal -->
+                                    <div class="modal fade" id="modal-default">
+                                        <div class="modal-dialog" style="width:80%">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span></button>
+                                            <h4 class="modal-title">Choose Image</h4>
                                             </div>
-                                            <div class="col-md-8">
-                                                <p class="image_chosen"></p>
+                                            <div class="modal-body">
+                                                <select class="media_event_select form-control col-md-12" name="image_id">
+                                                        <option value=""></option>
+                                                        @foreach ($media as $one)
+                                                            <option data-img-label="<a target='_blank' href='{{asset('')}}{{$one->link}}'>{{$one->original_name}}</a>'" data-img-src="{{asset('')}}{{$one->link}}" data-img-class="custom-image" value="{{$one->id}}">{{$one->original_name}}</option>
+                                                        @endforeach
+                                                </select>
                                             </div>
                                         </div>
-                                        <br>
-                                        <!-- Add Image Modal -->
-                                        <div class="modal fade" id="modal-default">
-                                            <div class="modal-dialog" style="width:80%">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">×</span></button>
-                                                <h4 class="modal-title">Choose Image</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <select class="media_event_select form-control col-md-12" name="image_id">
-                                                            <option value=""></option>
-                                                            @foreach ($media as $one)
-                                                                <option data-img-label="<a target='_blank' href='{{asset('')}}{{$one->link}}'>{{$one->original_name}}</a>'" data-img-src="{{asset('')}}{{$one->link}}" data-img-class="custom-image" value="{{$one->id}}">{{$one->original_name}}</option>
-                                                            @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <!-- /.modal-content -->
-                                            </div>
-                                            <!-- /.modal-dialog -->
+                                        <!-- /.modal-content -->
                                         </div>
-
+                                        <!-- /.modal-dialog -->
                                     </div>
 
                                 </div>
@@ -185,6 +206,7 @@
 
     $(document).ready(function(){
         CKEDITOR.replace('editor_event');
+        CKEDITOR.replace('editor_event1');
 
         var t = $('#example').DataTable({
             "order": [[ 0, "desc" ]]
@@ -198,11 +220,16 @@
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $('#add_event_form').on('submit', function(event){
             var description = CKEDITOR.instances.editor_event.getData();
+            description = trimString(description);
+
+            var long_description = CKEDITOR.instances.editor_event1.getData();
+            long_description = trimString(long_description);
+
             event.preventDefault();
             $.ajax({
                 url:"{{ route('admin.events.save') }}",
                 method:"POST",
-                data:$("#add_event_form").serialize() + "&description=" + description,
+                data:$("#add_event_form").serialize() + "&description=" + description + "&long_description=" + long_description ,
                 dataType:'JSON',
                 beforeSend: function(){
                     $(".overlay").toggleClass('hidden');
