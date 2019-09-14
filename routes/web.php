@@ -107,7 +107,52 @@ Route::group(['middleware' => ['checkAuth']], function ()
 			Route::post('/camps/update/{id}',array(
 				'as'=>'admin.camps.update',
 				'uses'=>'Admin\CampController@update'
+                ));
+            Route::post('/camps/images',array(
+                'as'=>'admin.camps.upload',
+                'uses'=>'Admin\CampController@upload'
+                ));
+            Route::post('/camps/images/delete',array(
+                'as'=>'admin.camps.delete',
+                'uses'=>'Admin\CampController@delete'
+                ));
+
+            /* Sessions */
+			Route::get('/sessions',array(
+				'as'=>'admin.sessions.index',
+				'uses'=>'Admin\SessionController@index'
 				));
+			Route::post('/sessions/update/{id}',array(
+				'as'=>'admin.sessions.update',
+				'uses'=>'Admin\SessionController@update'
+                ));
+            Route::post('/sessions/images',array(
+                'as'=>'admin.sessions.upload',
+                'uses'=>'Admin\SessionController@upload'
+                ));
+            Route::post('/sessions/images/delete',array(
+                'as'=>'admin.sessions.delete',
+                'uses'=>'Admin\SessionController@delete'
+                ));
+
+            /* Trainings */
+			Route::get('/trainings',array(
+				'as'=>'admin.trainings.index',
+				'uses'=>'Admin\TrainingController@index'
+				));
+			Route::post('/trainings/update/{id}',array(
+				'as'=>'admin.trainings.update',
+				'uses'=>'Admin\TrainingController@update'
+                ));
+            Route::post('/trainings/images',array(
+                'as'=>'admin.trainings.upload',
+                'uses'=>'Admin\TrainingController@upload'
+                ));
+            Route::post('/trainings/images/delete',array(
+                'as'=>'admin.trainings.delete',
+                'uses'=>'Admin\TrainingController@delete'
+                ));
+
 
             /* Slides */
 			Route::get('/slides',array(

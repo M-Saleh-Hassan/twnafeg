@@ -22,6 +22,7 @@ class FormElementController extends Controller
             $data = $request->all();
             $data['form_id'] = $form_id;
             $data['active'] = ($request->active == '1') ? 1 : 0;
+            $data['required'] = ($request->required == '1') ? 1 : 0;
 
             $element= FormElement::create($data);
 
@@ -67,6 +68,7 @@ class FormElementController extends Controller
             $data = $request->all();
             $data['form_id'] = $form_id;
             $data['active'] = ($request->active == '1') ? 1 : 0;
+            $data['required'] = ($request->required == '1') ? 1 : 0;
 
             $element= FormElement::find($id)->update($data);
 

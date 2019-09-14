@@ -32,7 +32,7 @@
      <link href="{{asset('assets')}}/css/style.css" rel="stylesheet" type="text/css">
      @yield('custom-css')
 
-    <title>{{websiteTitlte()}}</title>
+    <title>@yield('website_title', websiteTitlte())</title>
     <link rel="icon" type="image/ico" href="{{asset('') . fav()->link}}" />
 </head>
 <body data-spy="scroll" data-target="#navbar" data-offset="500">
@@ -91,7 +91,9 @@
         }
 
     })
-
+    $(document).ready(function() {
+        if({{$event_modal}})$('.event-modal-{{$event_modal}}').trigger('click');
+    });
     </script>
 </body>
 </html>

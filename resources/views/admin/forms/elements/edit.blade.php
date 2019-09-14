@@ -82,6 +82,14 @@
                                             </label>
 
                                     </div>
+
+                                    <div class="form-group">
+                                            <label>required</label>
+                                            <label class="switch">
+                                                <input type="checkbox" name="required"  value="1" @if($current->required) checked @endif>
+                                                <span class="slider round"></span>
+                                            </label>
+                                    </div>
                                 </div>
                                 <!-- /.box-body -->
                                 <button type="submit" class="btn btn-primary">Edit</button>

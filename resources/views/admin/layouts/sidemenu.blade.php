@@ -47,6 +47,10 @@
 
       <li><a href="{{route('admin.camps.index')}}"><i class="fa fa-link"></i> <span>Camps</span></a></li>
 
+      <li><a href="{{route('admin.sessions.index')}}"><i class="fa fa-link"></i> <span>Sessions</span></a></li>
+
+      <li><a href="{{route('admin.trainings.index')}}"><i class="fa fa-link"></i> <span>Trainings</span></a></li>
+
       <li><a href="{{route('admin.text.index')}}"><i class="fa fa-link"></i> <span>Website Text</span></a></li>
 
       <li><a href="{{route('admin.settings.index')}}"><i class="fa fa-link"></i> <span>Settings</span></a></li>

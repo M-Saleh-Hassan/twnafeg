@@ -41,7 +41,7 @@
                                         <a class="nav-link " href="{{route('en.home.index')}}#vision">Vision</a>
                                     </li>
                                     <li class="nav-item">
-                                            <a class="nav-link active" href="{{route('en.home.index')}}#events">Events</a>
+                                            <a class="nav-link" href="{{route('en.home.index')}}#events">Events</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{route('en.home.index')}}#testimonials">Testimonials</a>
@@ -77,7 +77,7 @@
             </section>
             <section id="desc">
                     <div class="container text-center"  >
-                            <p data-aos="zoom-in" data-aos-delay="0" data-aos-duration="1000">the Fathehood sessions are a mini training that is a minimum of one hour and maximum full day training. the location varies according to needs and is conducted in schools, universities, clubs, churches, youth clubs, etc... these sessions briefly tackle all the major fatherhood training components.</p>
+                            <p data-aos="zoom-in" data-aos-delay="0" data-aos-duration="1000">{!! strip_tags($session->long_description) !!}</p>
                     </div>
             </section>
             <section id="clients">
@@ -86,16 +86,9 @@
                     <div class=" row pics justify-content-center">
                         <div class="col-12" >
                           <ul >
-                            <li class="" data-aos="zoom-in" data-aos-delay="450" data-aos-duration="1000"><img src="{{asset('assets')}}/img/logos/1.png" alt=""></li>
-                            <li class="" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="1000"><img src="{{asset('assets')}}/img/logos/2.png" alt=""></li>
-                            <li class="" data-aos="zoom-in" data-aos-delay="150" data-aos-duration="1000"><img src="{{asset('assets')}}/img/logos/3.png" alt=""></li>
-                            <li class="" data-aos="zoom-in" data-aos-delay="350" data-aos-duration="1000"><img src="{{asset('assets')}}/img/logos/4.png" alt=""></li>
-                            <li class="" data-aos="zoom-in" data-aos-delay="500" data-aos-duration="1000"><img src="{{asset('assets')}}/img/logos/5.png" alt=""></li>
-                            <li class="" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="1000"><img src="{{asset('assets')}}/img/logos/6.png" alt=""></li>
-                            <li class="" data-aos="zoom-in" data-aos-delay="50" data-aos-duration="1000"><img src="{{asset('assets')}}/img/logos/7.png" alt=""></li>
-                            <li class="" data-aos="zoom-in" data-aos-delay="400" data-aos-duration="1000"><img src="{{asset('assets')}}/img/logos/8.png" alt=""></li>
-                            <li class="" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="1000"><img src="{{asset('assets')}}/img/logos/9.png" alt=""></li>
-                            <li class="" data-aos="zoom-in" data-aos-delay="250" data-aos-duration="1000"><img src="{{asset('assets')}}/img/logos/10.png" alt=""></li>
+                              @foreach ($session_images as $image)
+                                <li class="" data-aos="zoom-in" data-aos-delay="450" data-aos-duration="1000"><img src="{{asset('') . $image->link}}" alt=""></li>
+                              @endforeach
                          </ul>
                         </div>
                     </div><!--end row-->

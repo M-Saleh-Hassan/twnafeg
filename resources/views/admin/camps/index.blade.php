@@ -27,7 +27,7 @@
                             <i class="fa fa-refresh fa-spin"></i>
                     </div>
                     <div class="box-header with-border">
-                        <h3 class="box-title">{{$current->website_title}}</h3>
+                        <h3 class="box-title">Camps</h3>
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                             </button>
@@ -94,6 +94,72 @@
                 </div>
 
             </div>
+
+            <div class="row fileupload-buttonbar">
+                <div class="col-lg-2">
+                    <!-- The fileinput-button span is used to style the file input field as button -->
+                    <span class="btn btn-success fileinput-button" style="display:block ; margin-bottom:10px">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span>Add Images...</span>
+                        <input type="file" id="fileupload" name="photos[]" data-url="{{route('admin.camps.upload')}}" multiple="">
+                    </span>
+                </div>
+                <div class="col-lg-9">
+                    <div id="progress" class="progress progress-sm active">
+                        <div class="progress-bar progress-bar-success progress-bar-striped bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                    </div>
+                    <p id="loading"></p>
+                </div>
+                <div id="files_list"></div>
+            </div>
+            <div class="box box-warning box-solid collapsed-box">
+                <div class="overlay hidden">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+
+                <div class="box-header with-border">
+                    <h3 class="box-title">Images</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    {{-- <table id="example" class="table table-bordered table-hover" style="width:100%"> --}}
+                    <table id="example" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>preview</th>
+                                <th>name</th>
+                                <th>size</th>
+                                <th>extension</th>
+                                <th>delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($camp_images as $media)
+                                <tr id="row{{$media->id}}">
+                                    <td>{{$counter}}</td>
+                                    <td><a href="{{asset('')}}{{$media->link}}"><img src="{{asset('')}}{{$media->link}}" width="120px"  ></a></td>
+                                    <td>{{$media->original_name}}</td>
+                                    <td>{{$media->size}} KB</td>
+                                    <td>{{$media->type}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger delete" data-content="{{$media->id}}">
+                                            <i class="glyphicon glyphicon-trash"></i>
+                                            <span>Delete</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                @php $counter++; @endphp
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+
         </section>
         <!-- /.content -->
 </div>
@@ -153,19 +219,106 @@
         });
     });
 
+    $(function () {
+        var t = $('#example').DataTable({
+            "order": [[ 0, "desc" ]]
+        });
+        $('#fileupload').fileupload({
+            disableValidation: true,
+            dataType: 'json',
+            add: function (e, data) {
+                $('#loading').text('Uploading...');
+                data.submit();
+            },
+            done: function (e, data) {
+                // console.log(data.result);
+                $.each(data.result.files, function (index, file) {
+                    $('<p/>').html(file.name + ' (' + file.size + ' KB)').appendTo($('#files_list'));
+                    if ($('#file_ids').val() != '') {
+                        $('#file_ids').val($('#file_ids').val() + ',');
+                    }
+                    $('#file_ids').val($('#file_ids').val() + file.fileID);
+                    var rowNode = t.row.add( [
+                        {{$counter}},
+                        '<a href="{{asset('')}}' + file.link +'"><img src="{{asset('')}}' + file.link +'" width="120px" "></a>',
+                        file.name,
+                        file.size + ' KB',
+                        file.type,
+                        '<button type="button" class="btn btn-danger delete" data-content="' + file.fileID + '"><i class="glyphicon glyphicon-trash"></i><span>Delete</span></button>'
+                        @php $counter++; @endphp
+                    ] ).draw().node();
+                    $( rowNode )
+                        .css( 'color', 'red' )
+                        .attr('id', 'row'+ file.fileID );
+                     });
+                $('#loading').text('');
+
+            },
+            progressall: function (e, data) {
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                $('#progress .bar').css(
+                    'width',
+                  progress + '%'
+                );
+                $('#loading').text('uploading ' + progress + '%');
+            }
+        });
+        // var overallProgress = $('#fileupload').fileupload('progress');
+        // console.log(overallProgress);
+    });
+
+    $(document).ready(function(){
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $('#example').on('click', '.delete', function(){
+        // $(".delete").click(function(){ // not working at page 2 see reason at https://www.gyrocode.com/articles/jquery-datatables-why-click-event-handler-does-not-work/
+            if(confirm('Are you sure you want to Delete ?'))
+            {
+                var content = $( this ).data( "content" );
+                $.ajax({
+                    /* the route pointing to the post function */
+                    url: '{{route("admin.camps.delete")}}',
+                    type: 'POST',
+                    /* send the csrf-token and the input to the controller */
+                    data: {_token: CSRF_TOKEN, id: content},
+                    dataType: 'JSON',
+                    beforeSend: function(){
+                        $(".overlay").toggleClass('hidden');
+                    },
+                    /* remind that 'data' is the response of the AjaxController */
+                    success: function (data) {
+                        var id= data.id;
+                        $( '#row' + id ).html('');
+                        $(".overlay").toggleClass('hidden');
+                    }
+                });
+            }
+        });
+    });
+
 </script>
 <style>
-    li.custom-image
-    {
-        width:18.5%;
+
+    .fileinput-button input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+        opacity: 0;
+        -ms-filter: 'alpha(opacity=0)';
+        cursor: pointer;
     }
-    img.custom-image
-    {
-        height: 200px
+
+    #files_list p{
+        border-right: 1px solid #aaa;
+        padding: 0 10px;
+        display: inline-block;
     }
-    span.select2
-    {
-        width: 100% !important;
+    .progress{
+        margin:10px 0;
     }
+    .bar {
+        height: 18px;
+    }
+
 </style>
 @endsection

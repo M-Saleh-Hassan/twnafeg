@@ -12,6 +12,7 @@ class WebSiteTextSeeder extends Seeder
      */
     public function run()
     {
+        if(WebsiteText::first()) return;
         $WebsiteText = WebsiteText::create([
             'how_it_started' => 'It all started in the year 2002 at the Nyarugusu refugee camp in Tanzania. As horrific stories of rape, dismemberment and slaughter shook Cassie (later to establish the movement) to his core, one thing became inescapably clear - there had to be a deeper catalyst for this brokenness than what initially met the eye. 15 years of interaction with leaders around the world, hundreds of hours of research and thousands of meetings later, we are even more convinced that fatherlessness wasn’t just an issue facing those refugees.',
             'quote1' => 'Virtually every major social pathology has been linked to fatherlessness.',

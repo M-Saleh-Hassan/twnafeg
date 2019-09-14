@@ -57,6 +57,14 @@
                                 <span class="slider round"></span>
                             </label>
                     </div>
+
+                    <div class="form-group">
+                            <label>required</label>
+                            <label class="switch">
+                                <input type="checkbox" name="required"  value="1" checked>
+                                <span class="slider round"></span>
+                            </label>
+                    </div>
                 </div>
                 <!-- /.box-body -->
                 <button type="submit" class="btn btn-primary">Add</button>

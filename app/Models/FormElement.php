@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class FormElement extends Model
 {
-    protected $fillable = ['form_id', 'label', 'type', 'name', 'id_attribute', 'value', 'active'];
-    
+    protected $fillable = ['form_id', 'label', 'type', 'name', 'id_attribute', 'value', 'active', 'required'];
+
     public function options()
     {
         return $this->hasMany('App\Models\FormElementOption', 'form_element_id');

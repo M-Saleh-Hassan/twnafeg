@@ -47,6 +47,11 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label>Link Title</label>
+                                    <input type="text" class="form-control" placeholder="event Link" name="slug">
+                                </div>
+
+                                <div class="form-group">
                                     <label>Title</label>
                                     <input type="text" class="form-control" placeholder="event title" name="title">
                                 </div>

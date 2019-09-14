@@ -46,6 +46,16 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <label>Link To Share </label>
+                                            <input type="text" class="form-control"  value="{{route('en.home.index') . '?event=' . $current->slug}}" disabled>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Link Title</label>
+                                            <input type="text" class="form-control" placeholder="event Link" name="slug" value="{{$current->slug}}">
+                                        </div>
 
                                         <div class="form-group">
                                             <label>Title</label>

@@ -8,12 +8,13 @@ use App\Models\Event;
 
 class EventController extends Controller
 {
-    public function index($event_id)
+    public function index($slug)
     {
-        $event = Event::find($event_id);
+        $event = Event::whereSlug($slug)->first();
         if(empty($event)) return redirect()->route('en.home.index');
 
         return view('english.events.index')
-        ->with('event', $event);
+        ->with('event', $event)
+        ->with('event_modal' , 0);
     }
 }

@@ -13,6 +13,7 @@ class CampsSeeder extends Seeder
      */
     public function run()
     {
+        if(Camp::first()) return;
         $image = Media::first();
         $camp = Camp::create([
             'image_id' => $image->id,

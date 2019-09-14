@@ -32,6 +32,6 @@ class CampsImages extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('camp_images');
     }
 }

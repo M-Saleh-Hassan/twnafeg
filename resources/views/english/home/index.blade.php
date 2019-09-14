@@ -105,7 +105,7 @@
 
 
                                 </figcaption>
-                            <a href="" class="r-info" data-izimodal-open="#modal-{{$event->id}}" data-izimodal-transitionin="fadeInDown" ></a>
+                            <a href="" class="r-info event-modal-{{$event->id}}" data-izimodal-open="#modal-{{$event->id}}" data-izimodal-transitionin="fadeInDown" ></a>
                         </figure>
 
                     </div>
@@ -126,7 +126,7 @@
                                         <p><b>Date:</b> {{$event->date_text}}</p>
                                         <p><b>Place:</b> {{$event->place}}<a href="{{$event->map}}">Get directions</a> </p>
                                         <p><b>price:</b> {{$event->price}}</p>
-                                        <a href="{{route('en.events.index', [$event->id])}}" target="_blank" class="modal-button">Register Now</a>
+                                        <a href="{{route('en.events.index', [$event->slug])}}" target="_blank" class="modal-button">Register Now</a>
                                 </div>
                         </div>
                     </div>
@@ -144,7 +144,7 @@
                             <img src="{{asset('assets')}}/img/outer-training.jpg" alt="sample108" />
                                 <figcaption>
                                     <h3>Fatherhood training</h3>
-                                    <p>is composed of many sessions to teach men how to be better father.</p>
+                                    <p>{!! strip_tags($training->short_description) !!}</p>
                                 </figcaption>
                                 <a href="{{route('en.home.trainings')}}"></a>
                         </figure>
@@ -155,7 +155,7 @@
                             <img src="{{asset('assets')}}/img/outer-session.jpg" alt="sample108" />
                                 <figcaption>
                                     <h3>Fatherhood sessions</h3>
-                                    <p>is composed of many sessions to teach men how to be better father.</p>
+                                    <p>{!! strip_tags($session->short_description) !!}</p>
                                 </figcaption>
                                 <a href="{{route('en.home.sessions')}}"></a>
                         </figure>
@@ -166,7 +166,7 @@
                             <img src="{{asset('assets')}}/img/outer-camps.jpg" alt="sample108" />
                                 <figcaption>
                                     <h3>Father & Child camps</h3>
-                                    <p>We focus in these camps on the positive effect of fatherhood on children.</p>
+                                    <p>{!! strip_tags($camp->short_description) !!}</p>
                                 </figcaption>
                                 <a href="{{route('en.home.camps')}}"></a>
                         </figure>

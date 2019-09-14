@@ -31,6 +31,6 @@ class Camps extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('camps');
     }
 }

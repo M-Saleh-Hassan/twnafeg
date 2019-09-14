@@ -30,6 +30,7 @@ class EventController extends Controller
         $validation = Validator::make($request->all(),
         [
             'title'           => 'required|max:51|min:3',
+            'slug'            => 'required',
             'image_id'        => 'required',
             'form_id'         => 'required',
             'date_text'       => 'required',
@@ -45,7 +46,9 @@ class EventController extends Controller
 
         if($validation->passes())
         {
-            $event= Event::create($request->all());
+            $modifiedRequest = $request->all();
+            $modifiedRequest['slug'] = str_slug($request->slug);
+            $event= Event::create($modifiedRequest);
 
             return response()->json([
                 'message'        => 'event saved Successfully',
@@ -100,8 +103,9 @@ class EventController extends Controller
 
         if($validation->passes())
         {
-
-            $event= Event::find($id)->update($request->all());
+            $modifiedRequest = $request->all();
+            $modifiedRequest['slug'] = str_slug($request->slug);
+            $event= Event::find($id)->update($modifiedRequest);
 
             return response()->json([
                 'message'        => 'event saved Successfully',
