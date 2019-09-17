@@ -7,104 +7,128 @@
  <!-- Nardine: redirection url -->
 <input type=hidden name="retURL" value="{{route('en.home.index')}}?redirect=1">
 
-    @foreach ($event->form->elements()->where('active', 1)->get() as $element)
+    @foreach ($event->form->elements()->where('active', 1)->where('label', 'not like', "%child%")->get() as $element)
         @if($element->type == 'hidden')
             <input type=hidden name="{{$element->name}}" id="{{$element->id_attribute}}" value="{{$element->value}}">
 
         @elseif($element->type == 'text')
             <label for="{{$element->id_attribute}}">{{$element->label}}</label>
-            <input  id="{{$element->id_attribute}}" class="required" maxlength="255" name="{{$element->name}}" size="20" type="text" required autocomplete="off"/><br>
+            <input  id="{{$element->id_attribute}}" class="required" maxlength="255" name="{{$element->name}}" size="20" type="text" @if($element->required) required @endif autocomplete="off"/><br>
 
         @elseif($element->type == 'password')
             <label for="{{$element->id_attribute}}">{{$element->label}}</label>
-            <input  id="{{$element->id_attribute}}" class="required" maxlength="255" name="{{$element->name}}" size="20" type="password" required autocomplete="off"/><br>
+            <input  id="{{$element->id_attribute}}" class="required" maxlength="255" name="{{$element->name}}" size="20" type="password" @if($element->required) required @endif autocomplete="off"/><br>
 
         @elseif($element->type == 'select')
             <label>{{$element->label}}</label>
-            <select  id="{{$element->id_attribute}}" name="{{$element->name}}" title="{{$element->label}}" class="required" required>
+            <select  id="{{$element->id_attribute}}" name="{{$element->name}}" title="{{$element->label}}" class="required" @if($element->required) required @endif>
 
                 @foreach ($element->options()->where('active', 1)->get() as $option)
                     <option value="{{$option->value}}" @if ($option->default) selected @endif>{{$option->text}}</option>
                 @endforeach
 
             </select><br>
+        @elseif($element->type == 'date')
+            <label>{{$element->label}}</label>
+            <span class="dateInput dateOnlyInput">
+                <input  id="{{$element->id_attribute}}" class="date" name="{{$element->name}}" size="12" type="text" @if($element->required) required @endif/>
+            </span>
+            <br>
+
         @endif
     @endforeach
 
+    <!-- Nardine: Package options are changed from one event to the other --> <!-- will be a drop down -->
+    @if($event->form->elements()
+        ->where('active', 1)->
+        where(function ($q) {
+            $q->where('label', 'like', "%child 1%")
+                ->orwhere('label', 'like', "%child 2%");
+            })
+        ->first()
+        )
+        <label for="Package used">How many child</label>
+
+        <select  id="00N4J000006gBfd" class="required package " name="00N4J000006gBfd" title="Package used" required>
+            <option value="">--None--</option>
+            @if(!$event->form->elements()->where('active', 1)->where('label', 'like', "%child 1%")->get()->isEmpty())
+                <option value="a114J00000066SfQAI">one child</option>
+            @endif
+            @if(!$event->form->elements()->where('active', 1)->where('label', 'like', "%child 2%")->get()->isEmpty())
+                <option value="a114J00000066SgQAI">two children</option>
+            @endif
+        </select><br>
+    @endif
 
 <!-- Nardine: Children fields will be available to fill according to the number of children chosen first -->
 
 <!------------------ 1st child start ----------------->
 <div class="one-child d-none">
-    <label for="Child 1 Name">Child 1 Name:</label>
-    <input  id="00N4J000006gBfS" maxlength="255" name="00N4J000006gBfS" size="20" type="text" /><br>
+    @foreach ($event->form->elements()->where('active', 1)->where('label', 'like', "%child 1%")->get() as $element)
+        @if($element->type == 'hidden')
+            <input type=hidden name="{{$element->name}}" id="{{$element->id_attribute}}" value="{{$element->value}}">
 
+        @elseif($element->type == 'text')
+            <label for="{{$element->id_attribute}}">{{$element->label}}</label>
+            <input  id="{{$element->id_attribute}}" class="required" maxlength="255" name="{{$element->name}}" size="20" type="text" @if($element->required) required @endif autocomplete="off"/><br>
 
+        @elseif($element->type == 'password')
+            <label for="{{$element->id_attribute}}">{{$element->label}}</label>
+            <input  id="{{$element->id_attribute}}" class="required" maxlength="255" name="{{$element->name}}" size="20" type="password" @if($element->required) required @endif autocomplete="off"/><br>
 
-    <label for="Child 1 DOB">Child 1 Date of birth:</label>
-    <span class="dateInput dateOnlyInput">
-<input  id="00N4J000006gBfQ" name="00N4J000006gBfQ" size="12" class="date" type="text" /></span><br>
+        @elseif($element->type == 'select')
+            <label>{{$element->label}}</label>
+            <select  id="{{$element->id_attribute}}" name="{{$element->name}}" title="{{$element->label}}" class="required" @if($element->required) required @endif>
 
-    <label for="Child 1 T-Shirt">Child 1 T-Shirt size:</label>
-    <select  id="00N4J000006gBfy" name="00N4J000006gBfy" title="Child 1 T-Shirt">
-    <option value="">--None--</option>
-    <option value="6">6</option>
-    <option value="8">8</option>
-    <option value="10">10</option>
-    <option value="12">12</option>
-    <option value="14">14</option>
-    <option value="16">16</option>
-    </select><br>
+                @foreach ($element->options()->where('active', 1)->get() as $option)
+                    <option value="{{$option->value}}" @if ($option->default) selected @endif>{{$option->text}}</option>
+                @endforeach
 
-    <label for="Child 1 Gender">Child 1 Gender:</label>
-    <select  id="00N4J000006gBfR" name="00N4J000006gBfR" title="Child 1 Gender" >
-        <option value="">--None--</option>
-        <option value="Female">Female</option>
-        <option value="Male">Male</option>
-    </select><br>
+            </select><br>
+        @elseif($element->type == 'date')
+            <label>{{$element->label}}</label>
+            <span class="dateInput dateOnlyInput">
+                <input  id="{{$element->id_attribute}}" class="date" name="{{$element->name}}" size="12" type="text" @if($element->required) required @endif/>
+            </span>
+            <br>
 
-    <label for="Child 1 School:">Child 1 School:</label>
-    <input  id="00N4J000006gBfT" maxlength="255" name="00N4J000006gBfT" size="20" type="text" /><br>
-
-    <label for="Child 1 Allergies:">Child 1 Allergies:</label>
-    <input  id="00N4J000006gBfP" maxlength="255" name="00N4J000006gBfP" size="20" type="text" /><br>
-
+        @endif
+    @endforeach
 </div>
 
 
 <!------------------ 2nd child start ----------------->
 <div class="two-child d-none">
-    <label for="Child 2 Name">Child 2 Name:</label>
-    <input  id="00N4J000006gBfY" maxlength="255" name="00N4J000006gBfY" size="20" type="text" /><br>
+    @foreach ($event->form->elements()->where('active', 1)->where('label', 'like', "%child 2%")->get() as $element)
+        @if($element->type == 'hidden')
+            <input type=hidden name="{{$element->name}}" id="{{$element->id_attribute}}" value="{{$element->value}}">
 
-    <label for="Child 2 DOB">Child 2 Date of birth:</label>
-    <span class="dateInput dateOnlyInput">
-<input  id="00N4J000006gBfW" name="00N4J000006gBfW" size="12" class="date" type="text" /></span><br>
+        @elseif($element->type == 'text')
+            <label for="{{$element->id_attribute}}">{{$element->label}}</label>
+            <input  id="{{$element->id_attribute}}" class="required" maxlength="255" name="{{$element->name}}" size="20" type="text" @if($element->required) required @endif autocomplete="off"/><br>
 
-    <label for="Child 2 T-Shirt">Child 2 T-Shirt size:</label>
-    <select  id="00N4J000006gBg3" name="00N4J000006gBg3" title="Child 2 T-Shirt">
-    <option value="">--None--</option>
-    <option value="6">6</option>
-    <option value="8">8</option>
-    <option value="10">10</option>
-    <option value="12">12</option>
-    <option value="14">14</option>
-    <option value="16">16</option>
-    </select><br>
+        @elseif($element->type == 'password')
+            <label for="{{$element->id_attribute}}">{{$element->label}}</label>
+            <input  id="{{$element->id_attribute}}" class="required" maxlength="255" name="{{$element->name}}" size="20" type="password" @if($element->required) required @endif autocomplete="off"/><br>
 
-    <label for="Child 2 Gender">Child 2 Gender:</label>
-    <select  id="00N4J000006gBfX" name="00N4J000006gBfX" title="Child 2 Gender">
-    <option value="">--None--</option>
-    <option value="Female">Female</option>
-    <option value="Male">Male</option>
-    </select><br>
+        @elseif($element->type == 'select')
+            <label>{{$element->label}}</label>
+            <select  id="{{$element->id_attribute}}" name="{{$element->name}}" title="{{$element->label}}" class="required" @if($element->required) required @endif>
 
-    <label for="Child 2 School">Child 2 School:</label>
-    <input  id="00N4J000006gBfZ" maxlength="255" name="00N4J000006gBfZ" size="20" type="text" /><br>
+                @foreach ($element->options()->where('active', 1)->get() as $option)
+                    <option value="{{$option->value}}" @if ($option->default) selected @endif>{{$option->text}}</option>
+                @endforeach
 
-    <label for="Child 2 Allergies">Child 2 Allergies:</label>
-    <input  id="00N4J000006gBfV" maxlength="255" name="00N4J000006gBfV" size="20" type="text" /><br>
+            </select><br>
+        @elseif($element->type == 'date')
+            <label>{{$element->label}}</label>
+            <span class="dateInput dateOnlyInput">
+                <input  id="{{$element->id_attribute}}" class="date" name="{{$element->name}}" size="12" type="text" @if($element->required) required @endif/>
+            </span>
+            <br>
 
+        @endif
+    @endforeach
 
 </div>
 

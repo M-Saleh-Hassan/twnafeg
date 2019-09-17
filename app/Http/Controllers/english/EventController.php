@@ -11,6 +11,7 @@ class EventController extends Controller
     public function index($slug)
     {
         $event = Event::whereSlug($slug)->first();
+        
         if(empty($event)) return redirect()->route('en.home.index');
 
         return view('english.events.index')
