@@ -126,7 +126,7 @@
                                         <p><b>Date:</b> {{$event->date_text}}</p>
                                         <p><b>Place:</b> {{$event->place}}<a href="{{$event->map}}">Get directions</a> </p>
                                         <p><b>price:</b> {{$event->price}}</p>
-                                        <a href="{{route('en.events.index', [$event->slug])}}" target="_blank" class="modal-button">Register Now</a>
+                                        <a href="{{route('en.events.index', [app()->getLocale(), $event->slug])}}" target="_blank" class="modal-button">Register Now</a>
                                 </div>
                         </div>
                     </div>
@@ -146,7 +146,7 @@
                                     <h3>Fatherhood training</h3>
                                     <p>{!! strip_tags($training->short_description) !!}</p>
                                 </figcaption>
-                                <a href="{{route('en.home.trainings')}}"></a>
+                                <a href="{{route('en.home.trainings', [app()->getLocale()])}}"></a>
                         </figure>
                     </div>
                     <div class="wrapper col-lg-4"  data-aos="fade-up" data-aos-duration="1000">
@@ -157,7 +157,7 @@
                                     <h3>Fatherhood sessions</h3>
                                     <p>{!! strip_tags($session->short_description) !!}</p>
                                 </figcaption>
-                                <a href="{{route('en.home.sessions')}}"></a>
+                                <a href="{{route('en.home.sessions', [app()->getLocale()])}}"></a>
                         </figure>
                     </div>
                     <div class="wrapper col-lg-4 "data-aos="fade-left" data-aos-duration="1000">
@@ -168,7 +168,7 @@
                                     <h3>Father & Child camps</h3>
                                     <p>{!! strip_tags($camp->short_description) !!}</p>
                                 </figcaption>
-                                <a href="{{route('en.home.camps')}}"></a>
+                                <a href="{{route('en.home.camps', [app()->getLocale()])}}"></a>
                         </figure>
                     </div>
 
@@ -219,7 +219,7 @@
                             " data-aos-duration="1000">
                             <div class="blog" >
                                 @if (!empty($single->link))<a href="{{$single->link}}" target="_blank">
-                                @else <a href="{{route('en.home.news', [$single->id])}}" target="_blank">
+                                @else <a href="{{route('en.home.news', [app()->getLocale(), $single->id])}}" target="_blank">
                                 @endif
 
                                 <div class="date  ">{{$single->date}}</div>
@@ -238,7 +238,7 @@
                         <div class="col-md-4 hiddable">
                             <div class="blog ">
                                 @if (!empty($item->link))<a href="{{$item->link}}" target="_blank">
-                                @else <a href="{{route('en.home.news', [$item->id])}}" target="_blank">
+                                @else <a href="{{route('en.home.news', [app()->getLocale(), $item->id])}}" target="_blank">
                                 @endif
                                 <div class="date  ">{{$item->date}}</div>
                                 <img class="w-100" src="{{asset('') . $item->image->link}}" alt="blog-img">

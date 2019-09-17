@@ -25,7 +25,7 @@
         <header id="nav">
                 <nav id="navbar" class="navbar navbar-expand-lg navbar-light position-fixed">
                     <div class="container">
-                        <a class="navbar-brand" href="{{route('en.home.index')}}">
+                        <a class="navbar-brand" href="{{route('en.home.index', [app()->getLocale()])}}">
                             <img class="logo" src="{{asset('assets')}}/img/logo-white.png" alt="logo">
                             </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,34 +35,38 @@
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav nav-pills ml-auto justify-content-end">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('en.home.index')}}#home">Home</a>
+                                        <a class="nav-link" href="{{route('en.home.index', [app()->getLocale()])}}#home">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('en.home.index')}}#about">About</a>
+                                        <a class="nav-link" href="{{route('en.home.index', [app()->getLocale()])}}#about">About</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link " href="{{route('en.home.index')}}#vision">Vision</a>
+                                        <a class="nav-link " href="{{route('en.home.index', [app()->getLocale()])}}#vision">Vision</a>
                                     </li>
                                     <li class="nav-item">
-                                            <a class="nav-link" href="{{route('en.home.index')}}#events">Events</a>
+                                            <a class="nav-link" href="{{route('en.home.index', [app()->getLocale()])}}#events">Events</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('en.home.index')}}#testimonials">Testimonials</a>
+                                        <a class="nav-link" href="{{route('en.home.index', [app()->getLocale()])}}#testimonials">Testimonials</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('en.home.index')}}#media">Media</a>
+                                        <a class="nav-link" href="{{route('en.home.index', [app()->getLocale()])}}#media">Media</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('en.home.index')}}#mother">mother</a>
+                                        <a class="nav-link" href="{{route('en.home.index', [app()->getLocale()])}}#mother">mother</a>
                                     </li>
                                     <li class="nav-item">
-                                            <a class="nav-link" href="{{route('en.home.index')}}#team">Team</a>
+                                            <a class="nav-link" href="{{route('en.home.index', [app()->getLocale()])}}#team">Team</a>
                                         </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('en.home.index')}}#contacts">Contacts</a>
+                                        <a class="nav-link" href="{{route('en.home.index', [app()->getLocale()])}}#contacts">Contacts</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="ar/training-ar.html">عربي</a>
+                                        @if(app()->getLocale() == 'en')
+                                            <a class="nav-link" href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), 'ar') }}">عربي</a>
+                                        @elseif(app()->getLocale() == 'ar')
+                                            <a class="nav-link" href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), 'en') }}">English</a>
+                                        @endif
                                     </li>
                                 </ul>
 

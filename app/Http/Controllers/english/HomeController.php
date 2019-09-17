@@ -57,7 +57,7 @@ class HomeController extends Controller
     public function news($id)
     {
         $news = News::find($id);
-        if(!$news) return redirect()->route('en.home.index');
+        if(!$news) return redirect()->route('en.home.index', [app()->getLocale()]);
 
         return view('english.news.index')
         ->with('news', $news);

@@ -1,7 +1,7 @@
 <header id="nav">
     <nav id="navbar" class="navbar navbar-expand-lg navbar-light position-fixed">
         <div class="container">
-            <a class="navbar-brand" href="{{route('en.home.index')}}">
+            <a class="navbar-brand" href="{{route('en.home.index', [app()->getLocale()])}}">
                 <img class="logo" src="{{asset('') . logo()->link}}" alt="logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,7 +14,7 @@
                             <a class="nav-link link" href="#home">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link link" href="#about">About</a>
+                            <a class="nav-link link" href="#about">{{ __('About') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link link" href="#vision">Vision</a>
@@ -38,7 +38,11 @@
                             <a class="nav-link link" href="#contacts">Contacts</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="ar/index-ar.html">عربي</a>
+                            @if(app()->getLocale() == 'en')
+                                <a class="nav-link" href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), 'ar') }}">عربي</a>
+                            @elseif(app()->getLocale() == 'ar')
+                                <a class="nav-link" href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), 'en') }}">English</a>
+                            @endif
                         </li>
                     </ul>
 

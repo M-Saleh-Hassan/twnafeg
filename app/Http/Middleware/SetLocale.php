@@ -4,9 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-use Auth;
-
-class CheckAdmin
+class SetLocale
 {
     /**
      * Handle an incoming request.
@@ -17,14 +15,7 @@ class CheckAdmin
      */
     public function handle($request, Closure $next)
     {
-        // if(Auth::user()->getUserType() == "admin")
-        if(1)
-        {
-            return $next($request);
-        }
-        else
-        {
-            return redirect()->route('en.home.index', [app()->getLocale()]);
-        }
+        app()->setLocale($request->segment(1));
+        return $next($request);
     }
 }

@@ -5,7 +5,7 @@
     <h5>Please register here by filling the below info, you will receive a confirmation mail and the payment link once the below is filled. make sure your email is correct.</h5>
 
  <!-- Nardine: redirection url -->
-<input type=hidden name="retURL" value="{{route('en.home.index')}}?redirect=1">
+<input type=hidden name="retURL" value="{{route('en.home.index', [app()->getLocale()])}}?redirect=1">
 
     @foreach ($event->form->elements()->where('active', 1)->where('label', 'not like', "%child%")->get() as $element)
         @if($element->type == 'hidden')

@@ -23,7 +23,7 @@ class CheckAuth
         }
         else
         {
-            return redirect()->route('en.home.index');
+            return redirect()->route('en.home.index', [app()->getLocale()]);
         }
     }
 }

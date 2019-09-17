@@ -10,34 +10,43 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+    return redirect(app()->getLocale());
+});
 
-Route::get('/',array(
-    'as'=>'en.home.index',
-    'uses'=>'english\HomeController@index'
-));
-Route::get('/camps',array(
-    'as'=>'en.home.camps',
-    'uses'=>'english\HomeController@camps'
-));
-Route::get('/sessions',array(
-    'as'=>'en.home.sessions',
-    'uses'=>'english\HomeController@sessions'
-));
-Route::get('/trainings',array(
-    'as'=>'en.home.trainings',
-    'uses'=>'english\HomeController@trainings'
-));
+Route::group([
+    'prefix' => '{locale}',
+    'where' => ['locale' => '[a-zA-Z]{2}'],
+    'middleware' => 'setlocale'
+], function() { // ...
 
-Route::get('/news/{news_id}',array(
-    'as'=>'en.home.news',
-    'uses'=>'english\HomeController@news'
-));
+    Route::get('/',array(
+        'as'=>'en.home.index',
+        'uses'=>'english\HomeController@index'
+    ));
+    Route::get('/camps',array(
+        'as'=>'en.home.camps',
+        'uses'=>'english\HomeController@camps'
+    ));
+    Route::get('/sessions',array(
+        'as'=>'en.home.sessions',
+        'uses'=>'english\HomeController@sessions'
+    ));
+    Route::get('/trainings',array(
+        'as'=>'en.home.trainings',
+        'uses'=>'english\HomeController@trainings'
+    ));
 
-Route::get('/events/{event_id}',array(
-    'as'=>'en.events.index',
-    'uses'=>'english\EventController@index'
-));
+    Route::get('/news/{news_id}',array(
+        'as'=>'en.home.news',
+        'uses'=>'english\HomeController@news'
+    ));
 
+    Route::get('/events/{event_id}',array(
+        'as'=>'en.events.index',
+        'uses'=>'english\EventController@index'
+    ));
+});
 // // Authentication Routes...
 Route::get('admin', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('admin', 'Auth\LoginController@login')->name('signIn');

@@ -8,11 +8,11 @@ use App\Models\Event;
 
 class EventController extends Controller
 {
-    public function index($slug)
+    public function index($locale, $slug)
     {
         $event = Event::whereSlug($slug)->first();
-        
-        if(empty($event)) return redirect()->route('en.home.index');
+
+        if(empty($event)) return redirect()->route('en.home.index', [app()->getLocale()]);
 
         return view('english.events.index')
         ->with('event', $event)
